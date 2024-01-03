@@ -3,6 +3,7 @@ import $ from 'jquery';
 import React from 'react';
 import {useEffect} from 'react';
 import {Link} from 'react-router-dom';
+import axios from '../api/axios';
 const Swiper = () => {
     let lhh;let u;let dzCardSuperLike;
   
@@ -128,6 +129,10 @@ const Swiper = () => {
   };
   
     useEffect(() => {
+      
+
+
+
       lhh();
       $('.dz-sp-like').on('click', function () {
         const e = $(this).parents('.dzSwipe_card');
@@ -330,9 +335,9 @@ const Swiper = () => {
 			<a href="explore.html" className="nav-link">
 				<i className="flaticon flaticon-magnifying-glass"></i>
 			</a>
-			<a href="wishlist.html" className="nav-link">
+			<Link to="/explore" className="nav-link">
 				<i className="flaticon flaticon-sparkle"></i>
-			</a>
+			</Link>
 			<a href="chat-list.html" className="nav-link">
 				<i className="flaticon flaticon-chat-2"></i>
 			</a>
