@@ -16,7 +16,7 @@ const Explore = () => {
 	const[author,setAuthor]=useState(null);
 	const[badges,setBadges]=useState(null);
 	const[isloading,setIsloading]=useState(true);
-	const lim=3;
+	const lim=4;
 	
 
     useEffect(()=>{
