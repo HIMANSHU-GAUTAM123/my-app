@@ -1,10 +1,18 @@
 import '../assets/css/style.css';
 import $ from 'jquery';
 import React from 'react';
-import {useEffect} from 'react';
+import {useEffect,useState} from 'react';
 import {Link} from 'react-router-dom';
 import axios from '../api/axios';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectImageId, closeImage } from '../store/categorySlice';
+import Loader from './Loader';
+
 const Swiper = () => {
+  const [post, setPost] =useState(null);
+  const dispatch = useDispatch();
+  const selectedImageId = useSelector(selectImageId);
+ 
     let lhh;let u;let dzCardSuperLike;
   
     let e, t, a, o = false,
@@ -147,10 +155,25 @@ const Swiper = () => {
         });
       });
     }, []); // The empty dependency array ensures that the effect runs once, similar to componentDidMount
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const response = await axios.post('/get-posts',
+          {
+            category_id:2
+          });
+          setPost(response);
+        } catch (error) {
+          console.error('Error fetching category details:', error);
+        }
+      };
   
+      // Fetch data when the component mounts
+      fetchData();
+    },[]);
 
   
-  return (
+  return !post?(<Loader/>): (
     <div >
       
       <div class="page-wrapper">
@@ -164,24 +187,19 @@ const Swiper = () => {
 
 
 
-{/* <!-- Header -->	 */}
-		<header className="header header-fixed border-0 style-2 bg-white">
+{/* <!-- Header --> */}
+<header className="header header-fixed bg-white">
 			<div className="container">
 				<div className="header-content">
-					<div className="left-content header-logo logo-lg">
-						<a href="/">
-							<img src={require('../assets/images/w3tinder/tinder.png')} alt=""/>
-						</a>
+					<div className="left-content">
+						<Link to="/categories">
+							<i className="icon feather icon-arrow-left"></i>
+						</Link>
+						<h6 className="title">Back</h6>
 					</div>
-					<div className="mid-content">
+					<div className="mid-content header-logo">
 					</div>
-					<div className="right-content d-flex gap-2">
-						<a href="javascript:void(0);" className="filter-icon" data-bs-toggle="offcanvas" data-bs-target="#settingCanvas" aria-controls="offcanvasBottom">
-							<i className="flaticon flaticon-settings-sliders"></i>
-						</a>
-						<a href="javascript:void(0);" className="menu-toggler">
-							<i className="icon feather icon-grid"></i>
-						</a>
+					<div className="right-content dz-meta">
 					</div>
 				</div>
 			</div>
@@ -195,158 +213,59 @@ const Swiper = () => {
     <div className="page-content space-top p-b65" >
       <div className="container fixed-full-area">
         <div className="dzSwipe_card-cont dz-gallery-slider">
-          <div className="dzSwipe_card">
-            <div className="dz-media">
-              <img src={require('../assets/images/w3tinder/slider/pic1.png')} alt=""/>
-            </div>
-            <div className="dz-content">
-              <div className="left-content">
-                <span className="badge badge-primary d-inline-flex gap-1 mb-2"><i className="icon feather icon-map-pin"></i>Nearby</span>
-                <h4 className="title"><Link to={"/profile"}><a href="profile-detail.html">Harleen , 24</a></Link></h4>
-                <p className="mb-0"><i className="icon feather icon-map-pin"></i> 3 miles away</p>
-              </div>
-              <a href="javascript:void(0);" className="dz-icon dz-sp-like"><i className="flaticon flaticon-star-1"></i></a>
-            </div>
-            <div className="dzSwipe_card__option dzReject">
-              <i className="fa-solid fa-xmark"></i>
-            </div>
-            <div className="dzSwipe_card__option dzLike">
-              <i className="fa-solid fa-check"></i>
-            </div>
-            <div className="dzSwipe_card__option dzSuperlike">
-              <h5 className="title mb-0">Super Like</h5>
-            </div>
-            <div className="dzSwipe_card__drag"></div>
-          </div>
           
-          <div className="dzSwipe_card">
-            <div className="dz-media">
-              <img src={require('../assets/images/w3tinder/slider/pic3.png')} alt=""/>
-            </div>
-            <div className="dz-content">
-              <div className="left-content">
-                <span className="badge badge-primary d-inline-flex gap-1 mb-2"><i className="icon feather icon-map-pin"></i>Nearby</span>
-                <h4 className="title"><Link to={"/profile"}><a href="profile-detail.html">Richard, 24</a></Link></h4>
-                <p className="mb-0"><i className="icon feather icon-map-pin"></i> 5 miles away</p>
-              </div>
-              <a href="javascript:void(0);" className="dz-icon dz-sp-like"><i className="flaticon flaticon-star-1"></i></a>
-            </div>
-            <div className="dzSwipe_card__option dzReject">
-              <i className="fa-solid fa-xmark"></i>
-            </div>
-            <div className="dzSwipe_card__option dzLike">
-              <i className="fa-solid fa-check"></i>
-            </div>
-            <div className="dzSwipe_card__option dzSuperlike">
-              <h5 className="title mb-0">Super Like</h5>
-            </div>
-            <div className="dzSwipe_card__drag"></div>
-          </div>
           
-          <div className="dzSwipe_card">
-            <div className="dz-media">
-              <img src={require('../assets/images/w3tinder/slider/pic2.png')} alt=""/>
-            </div>
-            <div className="dz-content">
-              <div className="left-content">
-                <h4 className="title"><Link to={"/profile"}><a href="profile-detail.html">Natasha, 24</a></Link></h4>
-                <p className="mb-0"><i className="icon feather icon-map-pin"></i> 2 miles away</p>
-              </div>
-              <a href="javascript:void(0);" className="dz-icon dz-sp-like"><i className="flaticon flaticon-star-1"></i></a>
-            </div>
-            <div className="dzSwipe_card__option dzReject">
-              <i className="fa-solid fa-xmark"></i>
-            </div>
-            <div className="dzSwipe_card__option dzLike">
-              <i className="fa-solid fa-check"></i>
-            </div>
-            <div className="dzSwipe_card__option dzSuperlike">
-              <h5 className="title mb-0">Super Like</h5>
-            </div>
-            <div className="dzSwipe_card__drag"></div>
-          </div>
+
+
+        {post && Object.values(post.data).map(item =>{
+
+						return(
+									Object.values(item).map(e=>{
+									return(
+												e["image_url"] &&
+
+
+      									<div className="dzSwipe_card">
+                        <div className="dz-media">
+                        <img src={e["image_url"]} alt=""  />
+                        </div>
+                        <div className="dz-content">
+                          <div className="left-content">
+                            
+                            <h4 className="title"><Link to={"/profile"}><a href="profile-detail.html">Harleen , 24</a></Link></h4>
+                           
+                          </div>
+                          
+                        </div>
+                        <div className="dzSwipe_card__option dzReject">
+                          <i className="fa-solid fa-xmark"></i>
+                        </div>
+                        <div className="dzSwipe_card__option dzLike">
+                          <i className="fa-solid fa-check"></i>
+                        </div>
+                        
+                        <div className="dzSwipe_card__drag"></div>
+                      </div>
+                      
+                      
+
+
+											);}));})}
+
+
+
+
+         
           
-          <div className="dzSwipe_card">
-            <div className="dz-media">
-              <img src={require('../assets/images/w3tinder/slider/pic3.png')} alt=""/>
-            </div>
-            <div className="dz-content">
-              <div className="left-content">
-                <h4 className="title"><Link to={"/profile"}><a href="profile-detail.html">Suzan , 24</a></Link></h4>
-                <ul className="intrest">
-                  <li><span className="badge">Photography</span></li>
-                  <li><span className="badge">Street Food</span></li>
-                  <li><span className="badge">Foodie Tour</span></li>
-                </ul>
-              </div>
-              <a href="javascript:void(0);" className="dz-icon dz-sp-like"><i className="flaticon flaticon-star-1"></i></a>
-            </div>
-            <div className="dzSwipe_card__option dzReject">
-              <i className="fa-solid fa-xmark"></i>
-            </div>
-            <div className="dzSwipe_card__option dzLike">
-              <i className="fa-solid fa-check"></i>
-            </div>
-            <div className="dzSwipe_card__option dzSuperlike">
-              <h5 className="title mb-0">Super Like</h5>
-            </div>
-            <div className="dzSwipe_card__drag"></div>
-          </div>
           
-          <div className="dzSwipe_card">
-            <div className="dz-media">
-              <img src={require('../assets/images/w3tinder/slider/pic4.png')} alt=""/>
-            </div>
-            <div className="dz-content">
-              <div className="left-content">
-                <span className="badge badge-primary mb-2">New here</span>
-                <h4 className="title"><Link to={"/profile"}><a href="profile-detail.html">Harleen , 24</a></Link></h4>
-                <ul className="intrest">
-                  <li><span className="badge intrest">Climbing</span></li>
-                  <li><span className="badge intrest">Skincare</span></li>
-                  <li><span className="badge intrest">Dancing</span></li>
-                  <li><span className="badge intrest">Gymnastics</span></li>
-                </ul>							
-              </div>
-              <a href="javascript:void(0);" className="dz-icon dz-sp-like"><i className="flaticon flaticon-star-1"></i></a>
-            </div>
-            <div className="dzSwipe_card__option dzReject">
-              <i className="fa-solid fa-xmark"></i>
-            </div>
-            <div className="dzSwipe_card__option dzLike">
-              <i className="fa-solid fa-check"></i>
-            </div>
-            <div className="dzSwipe_card__option dzSuperlike">
-              <h5 className="title mb-0">Super Like</h5>
-            </div>
-            <div className="dzSwipe_card__drag"></div>
-          </div>
+          
+         
         </div>
       </div>
     </div>
     // {/* <!-- Page Content end --> */}
 
-    {/* <!-- Menubar --> */}
-	<div className="menubar-area style-3 footer-fixed">
-		<div className="toolbar-inner menubar-nav">
-			<a href="home.html" className="nav-link active">
-				<i className="fa-solid fa-house"></i>
-			</a>
-			<a href="explore.html" className="nav-link">
-				<i className="flaticon flaticon-magnifying-glass"></i>
-			</a>
-			<Link to="/explore" className="nav-link">
-				<i className="flaticon flaticon-sparkle"></i>
-			</Link>
-			<a href="chat-list.html" className="nav-link">
-				<i className="flaticon flaticon-chat-2"></i>
-			</a>
-			<a href="profile.html" className="nav-link">
-				<i className="fa-solid fa-user"></i>
-			</a>
-		</div>
-	</div>
-	{/* <!-- Menubar --> */}
+   
 
   </div>
     

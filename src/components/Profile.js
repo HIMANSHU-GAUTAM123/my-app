@@ -1,11 +1,41 @@
+import React from 'react';
 import '../assets/css/style.css';
 import $ from 'jquery';
-import React from 'react';
+import jQuery from 'jquery';
+import Swiper from 'swiper/bundle';
+import 'swiper/css/bundle';
+import {useEffect,useState,useRef} from 'react';
 import {Link} from 'react-router-dom';
-import {useEffect} from 'react';
+import axios from '../api/axios';
+import Loader from './Loader';
+import Pagination from '@mui/material/Pagination';
+import Stack from '@mui/material/Stack';
+import { useDispatch, useSelector } from 'react-redux';
+import {  setAndOpenImage } from '../store/categorySlice';
+import { useNavigate } from 'react-router-dom';
+
 
 const Profile = () => {
-  return (
+	const[detail,setDetail]=useState(null);
+	useEffect(() => {
+		const fetchData = async () => {
+		  try {
+			const response = await axios.post('/get-post-details',
+			{
+			  post_id:1
+			});
+			setDetail(response);
+		  } catch (error) {
+			console.error('Error fetching category details:', error);
+		  }
+		};
+	
+		// Fetch data when the component mounts
+		fetchData();
+	  },[]);
+
+  return !detail?(<Loader/>): (
+	detail &&
     <div >
       <div className="page-wrapper">
     
@@ -42,7 +72,7 @@ const Profile = () => {
 			<div className="detail-area">
 				<div className="dz-media-card style-2">
 					<div className="dz-media">
-						<img src={require('../assets/images/w3tinder/slider/pic4.png')} alt=""/>
+						<img src={detail.data["image-url"]} alt=""/>
 					</div>
 					<div className="dz-content">
 						<div className="left-content">
@@ -126,7 +156,7 @@ const Profile = () => {
 	<!-- Menubar --> */}
 	<div className="footer fixed">
 		<div className="dz-icon-box">
-			<Link to="/" className="icon dz-flex-box dislike"><i className="flaticon flaticon-cross font-18"></i></Link>
+			<Link to="/post" className="icon dz-flex-box dislike"><i className="flaticon flaticon-cross font-18"></i></Link>
 			<Link to="/" className="icon dz-flex-box super-like"><i className="fa-solid fa-star"></i></Link>
 			<Link to="/" className="icon dz-flex-box like"><i className="fa-solid fa-heart"></i></Link>
 		</div>

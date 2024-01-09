@@ -409,13 +409,11 @@ const Explore = () => {
      {/* <!-- Menubar --> */}
 	<div className="menubar-area style-3 footer-fixed">
 		<div className="toolbar-inner menubar-nav">
-			<Link to="/" className="nav-link active">
-				<i className="fa-solid fa-house"></i>
-			</Link>
+			
 			<a href="explore.html" className="nav-link">
 				<i className="flaticon flaticon-magnifying-glass"></i>
 			</a>
-			<Link to="/explore" className="nav-link">
+			<Link to="/" className="nav-link">
 				<i className="flaticon flaticon-sparkle"></i>
 			</Link>
 			<a href="chat-list.html" className="nav-link">

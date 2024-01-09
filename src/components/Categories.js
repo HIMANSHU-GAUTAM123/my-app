@@ -10,12 +10,19 @@ import axios from '../api/axios';
 import Loader from './Loader';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
+import { useDispatch, useSelector } from 'react-redux';
+import {  setAndOpenImage } from '../store/categorySlice';
+import { useNavigate } from 'react-router-dom';
+
 
 const Categories = () => {
 
-	const[res,setRes]=useState(null);
-	const[isloading,setIsloading]=useState(true);
+	const[res, setRes]=useState(null);
+	const[isloading, setIsloading]=useState(true);
 	const[index,setIndex]=useState(1);
+	const[cnt,setCnt]=useState(0);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const resContainerRef = useRef(null);
 	const lim=8;
 	useEffect(()=>{
@@ -29,6 +36,8 @@ const Categories = () => {
 			  );
 			  setRes(response);
 			  setIsloading(false);
+
+			  setCnt(response.data.total_count);
             } catch (err) {
               console.log(err);
             }
@@ -38,6 +47,19 @@ const Categories = () => {
           getData();
 
 	},[index])
+	const handleImageClick = (categoryId) => {
+		
+		dispatch(setAndOpenImage(categoryId));
+
+		
+
+		navigate('/post');
+		
+	  };
+	  useEffect(()=>{
+
+	  },[])
+	
 	const paginate = (event, value) => {
 		setIndex(value);
 		if (resContainerRef.current) {
@@ -54,11 +76,11 @@ const Categories = () => {
     <div>
      
 
-		<body classNameName="header-large bg-white" data-theme-color="color-primary-2" >
-		<div class="page-wrapper">
+		<div className="header-large bg-white" data-theme-color="color-primary-2" >
+		<div className="page-wrapper">
     
 
-  {/* <!-- Header -->	 */}
+  {/* <!-- Header -->	 
   <header className="header header-fixed border-0 style-2 bg-white">
 			<div className="container" >
 				<div className="header-content">
@@ -80,12 +102,30 @@ const Categories = () => {
 				</div>
 			</div>
 		</header>
+	<!-- Header --> */}
+	{/* <!-- Header --> */}
+	<header className="header header-fixed bg-white">
+			<div className="container">
+				<div className="header-content">
+					<div className="left-content">
+						<Link to="/">
+							<i className="icon feather icon-arrow-left"></i>
+						</Link>
+						<h6 className="title">Back</h6>
+					</div>
+					<div className="mid-content header-logo">
+					</div>
+					<div className="right-content dz-meta">
+					</div>
+				</div>
+			</div>
+		</header>
 	{/* <!-- Header --> */}
 
 {/* page content start */}
-<div class="page-content p-t100 p-b50"ref={resContainerRef} >
-		<div class="container">
-  <div class="tab-content" >
+<div className="page-content p-t100 p-b50"ref={resContainerRef} >
+		<div className="container">
+  <div className="tab-content" >
 						<div className="row g-2">
 							
 							{res && Object.values(res.data).map(item =>{
@@ -94,15 +134,16 @@ const Categories = () => {
 								Object.values(item).map(e=>{
 								return(
 									e["image_url"] &&
-								<div className="col-6">
-								<div className="dz-media-card style-4">
-								<div className="dz-media">
-								<img src={e["image_url"]} alt=""  />
+								<div className="col-6" >
+								<div  onClick={()=> handleImageClick(e["id"])} className="dz-media-card style-4">
+								<div  onClick={()=> handleImageClick(e["id"])} className="dz-media">
+								<img  src={e["image_url"]} alt=""  />
 								</div>
 	     						<div className="dz-content">
 			  				<div className="left-content">
-								<h6 className="title">{e["category_name"]}</h6>	
-								<span className="about">Harward University</span>
+
+								<h6 className="title" >{e["category_name"]}</h6>	
+								
 							</div>
 							<div className="dz-icon ms-auto me-0"><i className="flaticon flaticon-star-1"></i></div>
 							</div>
@@ -118,11 +159,14 @@ const Categories = () => {
 							
 						</div>
             </div>
-			<Stack spacing={2} >
-      <Pagination count={10} color="secondary"   size="small"    onChange={paginate}/>
-     
+			{cnt &&
+			<div >
+			<Stack spacing={2}  sx={{ marginTop: '5%', marginBottom: '5%'  , display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>
+      <Pagination count={Math.ceil(cnt/lim)} color="secondary"   size="small"    onChange={paginate}/>
+			
       
     </Stack>
+	</div>}
             </div>
 			
 			
@@ -132,13 +176,11 @@ const Categories = () => {
 				 {/* <!-- Menubar --> */}
 	<div className="menubar-area style-3 footer-fixed">
 		<div className="toolbar-inner menubar-nav">
-			<Link to="/" className="nav-link active">
-				<i className="fa-solid fa-house"></i>
-			</Link>
+			
 			<a href="explore.html" className="nav-link">
 				<i className="flaticon flaticon-magnifying-glass"></i>
 			</a>
-			<Link to="/explore" className="nav-link">
+			<Link to="/" className="nav-link">
 				<i className="flaticon flaticon-sparkle"></i>
 			</Link>
 			<a href="chat-list.html" className="nav-link">
@@ -152,7 +194,7 @@ const Categories = () => {
 	{/* <!-- Menubar --> */}
           
 </div>
-   </body>
+   </div>
     </div>
   )
 }

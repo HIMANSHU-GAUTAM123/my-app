@@ -19,9 +19,9 @@ function App() {
      <BrowserRouter>
           <Routes>
            
-            <Route path="/" element={<Swiper/>}></Route>
+            <Route path="/post" element={<Swiper/>}></Route>
             <Route path="/profile" element={<Profile/>}></Route>
-            <Route path="/explore" element={<Explore/>}></Route>
+            <Route path="/" element={<Explore/>}></Route>
             <Route path="/categories" element={<Categories/>}></Route>
             <Route path="/authors" element={<Author/>}></Route>
             <Route path="/tags" element={<Tags/>}></Route>
