@@ -11,7 +11,7 @@ import Loader from './Loader';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import { useDispatch, useSelector } from 'react-redux';
-import {  setAndOpenImage } from '../store/categorySlice';
+import {  setAndOpenImage,setAndOpenSource,setBack } from '../store/categorySlice';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -47,13 +47,15 @@ const Categories = () => {
           getData();
 
 	},[index])
-	const handleImageClick = (categoryId) => {
+	const handleImageClick = async(categoryId) => {
 		
-		dispatch(setAndOpenImage(categoryId));
-
+		dispatch(setAndOpenImage({category_id:categoryId}));
+		
+		
+		dispatch(setBack(2));
 		
 
-		navigate('/post');
+		navigate(`/categories/${categoryId}`);
 		
 	  };
 	  useEffect(()=>{

@@ -2,12 +2,14 @@
 import {BrowserRouter, Routes, Route, Navigate, Outlet} from 'react-router-dom';
 import React from 'react';
 import {useEffect} from 'react';
-import Swiper from "./components/Swiper";
 import Profile from "./components/Profile";
 import Explore from './components/Explore';
 import Author from './components/Author';
 import Categories from './components/Categories';
 import Tags from './components/Tags';
+import CategoriesPost from './components/CategoriesPost' ;
+import TagPost from './components/TagPost';
+import AuthorPost from './components/AuthorPost';
 
 function App() {
  
@@ -19,8 +21,10 @@ function App() {
      <BrowserRouter>
           <Routes>
            
-            <Route path="/post" element={<Swiper/>}></Route>
-            <Route path="/profile" element={<Profile/>}></Route>
+            <Route path="/categories/:postid" element={<CategoriesPost/>}></Route>
+            <Route path="/authors/:postid" element={<AuthorPost/>}></Route>
+            <Route path="/tags/:postid" element={<TagPost/>}></Route>
+            <Route path="/:main/:subId/:mainId" element={<Profile/>}></Route>
             <Route path="/" element={<Explore/>}></Route>
             <Route path="/categories" element={<Categories/>}></Route>
             <Route path="/authors" element={<Author/>}></Route>

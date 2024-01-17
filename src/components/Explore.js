@@ -8,6 +8,9 @@ import {useEffect,useState} from 'react';
 import {Link} from 'react-router-dom';
 import axios from '../api/axios';
 import Loader from './Loader';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import {  setAndOpenImage, setAndOpenSource ,setBack} from '../store/categorySlice';
 
 
 const Explore = () => {
@@ -16,6 +19,8 @@ const Explore = () => {
 	const[author,setAuthor]=useState(null);
 	const[badges,setBadges]=useState(null);
 	const[isloading,setIsloading]=useState(true);
+	const navigate = useNavigate();
+	const dispatch = useDispatch();
 	const lim=4;
 	
 
@@ -220,6 +225,41 @@ const Explore = () => {
 		}
 	  }, [res, author, badges]);
 
+	  const handleImageClick = async(categoryId) => {
+		
+		 dispatch(setAndOpenImage(categoryId));
+		 const s="category_id";
+		 dispatch(setAndOpenSource(s));
+		 dispatch(setBack(1));
+		
+
+
+		
+
+		 navigate(`/categories/${categoryId}`);
+		
+	  };
+	  const handleImageClick1 = async(categoryId) => {
+		
+		dispatch(setAndOpenImage(categoryId));
+		const s="author_id";
+		dispatch(setAndOpenSource(s));
+		dispatch(setBack(1));
+
+
+	   
+
+	   navigate(`/authors/${categoryId}`);
+	   
+	 };
+	 const handleImageClick2 = async(categoryId) => {
+		
+		dispatch(setAndOpenImage(categoryId));		
+		dispatch(setBack(1));
+		navigate(`/tags/${categoryId}`);
+	   
+	 };
+
     
 
 
@@ -234,22 +274,17 @@ const Explore = () => {
 		<div class="page-wrapper">
         {/* <!-- Header -->	 */}
 		<header className="header header-fixed border-0 style-2 bg-white">
-			<div className="container">
+			<div className="container" >
 				<div className="header-content">
 					<div className="left-content header-logo logo-lg">
-						<a href="/">
-							<img src={require('../assets/images/w3tinder/tinder.png')} alt=""/>
-						</a>
+					
+							
+						
 					</div>
 					<div className="mid-content">
 					</div>
 					<div className="right-content d-flex gap-2">
-						<a href="javascript:void(0);" className="filter-icon" data-bs-toggle="offcanvas" data-bs-target="#settingCanvas" aria-controls="offcanvasBottom">
-							<i className="flaticon flaticon-settings-sliders"></i>
-						</a>
-						<a href="javascript:void(0);" className="menu-toggler">
-							<i className="icon feather icon-grid"></i>
-						</a>
+						
 					</div>
 				</div>
 			</div>
@@ -288,8 +323,8 @@ const Explore = () => {
 												return(
 													e["image_url"] &&
 									<div className="swiper-slide">
-									<div className="dz-media-card style-4">
-									<a href="profile-detail.html">
+									<div className="dz-media-card style-4" onClick={()=> handleImageClick(e["id"])}>
+									
 										<div className="dz-media">
 										<img src={e["image_url"]} alt=""  />
 										{/* {console.log(e["image_url"])} */}
@@ -297,13 +332,12 @@ const Explore = () => {
 										<div className="dz-content">
 										<div className="left-content">
 										<h6 className="title">{e["category_name"]}</h6>
-											<span className="active-status">Recently Active</span>
+											
 										</div>
-										<div className="dz-icon ms-auto me-0">
-											<i className="flaticon flaticon-star-1"></i>
+										<div class="dz-icon ms-auto me-0"><i class="flaticon flaticon-star-1"></i></div>
+										
 										</div>
-										</div>
-									</a>
+									
 									</div>
 									</div>
 
@@ -332,8 +366,8 @@ const Explore = () => {
 																return(
 																	e["image_url"] &&
 														<div className="swiper-slide">
-														<div className="dz-media-card style-4">
-														<a href="profile-detail.html">
+														<div className="dz-media-card style-4" onClick={()=> handleImageClick1(e["id"])}>
+														
 														<div className="dz-media">
 														<img src={e["image_url"]} alt=""  />
 														 {/* {console.log(e["image_url"])}  */}
@@ -341,13 +375,12 @@ const Explore = () => {
 														<div className="dz-content">
 														<div className="left-content">
 														<h6 className="title">{e["author_name"]}</h6>
-															<span className="active-status">Recently Active</span>
+															
 														</div>
-														<div className="dz-icon ms-auto me-0">
-															<i className="flaticon flaticon-star-1"></i>
+														<div class="dz-icon ms-auto me-0"><i class="flaticon flaticon-star-1"></i></div>
+														
 														</div>
-														</div>
-														</a>
+														
 														</div>
 														</div>
 
@@ -375,8 +408,8 @@ const Explore = () => {
 											return(
 												e["image_url"] &&
 									<div className="swiper-slide">
-									<div className="dz-media-card style-4">
-									<a href="profile-detail.html">
+									<div className="dz-media-card style-4"  onClick={()=> handleImageClick2(e["id"])}>
+									
 									<div className="dz-media">
 									<img src={e["image_url"]} alt=""  />
 									{/* {console.log(e["image_url"])} */}
@@ -384,13 +417,12 @@ const Explore = () => {
 									<div className="dz-content">
 									<div className="left-content">
 										<h6 className="title">{e["badge_name"]}</h6>
-										<span className="active-status">Recently Active</span>
+										
 									</div>
-									<div className="dz-icon ms-auto me-0">
-										<i className="flaticon flaticon-star-1"></i>
+									<div class="dz-icon ms-auto me-0"><i class="flaticon flaticon-star-1"></i></div>
+									
 									</div>
-									</div>
-									</a>
+									
 									</div>
 									</div>
 

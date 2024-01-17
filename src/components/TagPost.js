@@ -5,13 +5,38 @@ import {useEffect,useState} from 'react';
 import {Link} from 'react-router-dom';
 import axios from '../api/axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectImageId, closeImage } from '../store/categorySlice';
+import { selectImageId, closeImage, selectedSource,back } from '../store/categorySlice';
 import Loader from './Loader';
+import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-const Swiper = () => {
+const TagPost = () => {
   const [post, setPost] =useState(null);
+  const [path, setPath] =useState(null);
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const auth="badges";
   const selectedImageId = useSelector(selectImageId);
+  const source=useSelector(selectedSource);
+  const prev=useSelector(back);
+  const { postid } = useParams();
+
+  const handleClick=()=>{
+
+    if(prev==1){
+      setPath("/")
+    }
+   
+    else{
+      setPath("/tags");
+  
+    }
+    navigate(path);
+
+  }
+
+ 
+
  
     let lhh;let u;let dzCardSuperLike;
   
@@ -158,10 +183,14 @@ const Swiper = () => {
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const response = await axios.post('/get-posts',
-          {
-            category_id:2
-          });
+          const response = await axios.post('/get-posts',{
+            badge_id:postid
+          }
+         
+            
+          );
+          console.log(response.data)
+
           setPost(response);
         } catch (error) {
           console.error('Error fetching category details:', error);
@@ -171,16 +200,20 @@ const Swiper = () => {
       // Fetch data when the component mounts
       fetchData();
     },[]);
+    const handleImageClick = async(categoryId) => {
+      navigate(`/${auth}/${postid}/${categoryId}`);
+      
+      };
 
   
   return !post?(<Loader/>): (
     <div >
       
-      <div class="page-wrapper">
+      <div className="page-wrapper">
     {/* <!-- Preloader --> 
 	 <div id="preloader">
-		<div class="loader">
-			<div class="load-circle"><div></div><div></div></div>
+		<div className="loader">
+			<div className="load-circle"><div></div><div></div></div>
 		</div>
 	</div> 
      <!-- Preloader end--> */}
@@ -191,10 +224,10 @@ const Swiper = () => {
 <header className="header header-fixed bg-white">
 			<div className="container">
 				<div className="header-content">
-					<div className="left-content">
-						<Link to="/categories">
+					<div className="left-content" onClick={handleClick}>
+						<div >
 							<i className="icon feather icon-arrow-left"></i>
-						</Link>
+              </div>
 						<h6 className="title">Back</h6>
 					</div>
 					<div className="mid-content header-logo">
@@ -225,14 +258,25 @@ const Swiper = () => {
 												e["image_url"] &&
 
 
-      									<div className="dzSwipe_card">
+      									
+      									<div className="dzSwipe_card" onClick={()=> handleImageClick(e["id"])}>
                         <div className="dz-media">
                         <img src={e["image_url"]} alt=""  />
                         </div>
                         <div className="dz-content">
                           <div className="left-content">
                             
-                            <h4 className="title"><Link to={"/profile"}><a href="profile-detail.html">Harleen , 24</a></Link></h4>
+                            <h4 className="title">{e["badge_name"]}</h4>
+                            
+                            
+                            <ul class="intrest">
+                            {e.keywords.split(',').map((keyword, index) => (
+                         <li key={index}><span className="badge">{keyword.trim()}</span></li>
+                                             ))}
+                            
+                            
+     
+							                                </ul>
                            
                           </div>
                           
@@ -277,4 +321,4 @@ const Swiper = () => {
 
 }
 
-export default Swiper
+export default TagPost

@@ -15,6 +15,9 @@ import {  setAndOpenImage } from '../store/categorySlice';
 import { useNavigate } from 'react-router-dom';
 
 
+import { RWebShare } from "react-web-share";
+
+
 const Profile = () => {
 	const[detail,setDetail]=useState(null);
 	useEffect(() => {
@@ -157,8 +160,20 @@ const Profile = () => {
 	<div className="footer fixed">
 		<div className="dz-icon-box">
 			<Link to="/post" className="icon dz-flex-box dislike"><i className="flaticon flaticon-cross font-18"></i></Link>
-			<Link to="/" className="icon dz-flex-box super-like"><i className="fa-solid fa-star"></i></Link>
-			<Link to="/" className="icon dz-flex-box like"><i className="fa-solid fa-heart"></i></Link>
+			<div className="icon dz-flex-box dislike"> 
+			<RWebShare 
+        data={{
+          text: "Like humans, flamingos make friends for life",
+          url: "https://on.natgeo.com/2zHaNup",
+          title: "Flamingos",
+        }}
+        onClick={() => console.log("shared successfully!")}
+      >
+        <i className="fa-solid fa-share"></i>
+      </RWebShare>
+
+	  </div>
+			
 		</div>
 	</div>
 	{/* <!-- Menubar --> */}

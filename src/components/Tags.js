@@ -10,7 +10,9 @@ import axios from '../api/axios';
 import Loader from './Loader';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-
+import { useDispatch, useSelector } from 'react-redux';
+import {  setAndOpenImage,setBack } from '../store/categorySlice';
+import { useNavigate } from 'react-router-dom';
 const Tags = () => {
  
 
@@ -19,6 +21,8 @@ const Tags = () => {
 	const[index,setIndex]=useState(1);
 	const[cnt,setCnt]=useState(0);
 	const resContainerRef = useRef(null);
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const lim=8;
 	useEffect(()=>{
 		const getData = async (e) => {
@@ -48,6 +52,16 @@ const Tags = () => {
 		if (resContainerRef.current) {
       resContainerRef.current.scrollIntoView({ behavior: 'smooth' });
     }
+  };
+  const handleImageClick = async(categoryId) => {
+		
+	dispatch(setAndOpenImage({badge_id:categoryId}));
+	
+	dispatch(setBack(4));
+	
+
+	navigate(`/tags/${categoryId}`);
+	
   };
 	  
 	
@@ -118,7 +132,7 @@ const Tags = () => {
 								return(
 									e["image_url"] &&
 								<div className="col-6">
-								<div className="dz-media-card style-4">
+								<div className="dz-media-card style-4"  onClick={()=> handleImageClick(e["id"])}>
 								<div className="dz-media">
 								<img src={e["image_url"]} alt=""  />
 								</div>
