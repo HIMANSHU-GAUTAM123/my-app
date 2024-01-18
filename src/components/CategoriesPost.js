@@ -265,8 +265,8 @@ const Swiper = () => {
                         </div>
                         <div className="dz-content">
                           <div className="left-content">
-                            
-                            <h4 className="title">{e["category_name"]}</h4>
+                          <span class="badge badge-primary mb-2">{e["category_name"]}</span>
+                            <h4 className="title"></h4>
                             
                             
                             <ul class="intrest">
@@ -279,6 +279,7 @@ const Swiper = () => {
 							                                </ul>
                            
                           </div>
+                          <div  className="dz-icon dz-sp-like"><i class="flaticon flaticon-star-1"></i></div>
                           
                         </div>
                         <div className="dzSwipe_card__option dzReject">
@@ -307,7 +308,7 @@ const Swiper = () => {
         </div>
       </div>
     </div>
-    // {/* <!-- Page Content end --> */}
+     {/* <!-- Page Content end --> */}
 
    
 

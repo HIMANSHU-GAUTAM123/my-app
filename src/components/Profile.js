@@ -13,6 +13,7 @@ import Stack from '@mui/material/Stack';
 import { useDispatch, useSelector } from 'react-redux';
 import {  setAndOpenImage } from '../store/categorySlice';
 import { useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
 
 import { RWebShare } from "react-web-share";
@@ -20,14 +21,17 @@ import { RWebShare } from "react-web-share";
 
 const Profile = () => {
 	const[detail,setDetail]=useState(null);
+	const { subId, mainId } = useParams();
 	useEffect(() => {
 		const fetchData = async () => {
 		  try {
 			const response = await axios.post('/get-post-details',
 			{
-			  post_id:1
+			  post_id:mainId
 			});
 			setDetail(response);
+			console.log(response.data)
+			
 		  } catch (error) {
 			console.error('Error fetching category details:', error);
 		  }
@@ -70,91 +74,105 @@ const Profile = () => {
 	{/* <!-- Header -->
 	
 	<!-- Page Content Start --> */}
-	<div className="page-content space-top p-b40">
-		<div className="container">
-			<div className="detail-area">
-				<div className="dz-media-card style-2">
-					<div className="dz-media">
-						<img src={detail.data["image-url"]} alt=""/>
-					</div>
-					<div className="dz-content">
-						<div className="left-content">
-							<h4 className="title">Chelsea, 21</h4>
-							<p className="mb-0"><i className="icon feather icon-map-pin"></i> 5 miles away</p>
+	{detail && Object.values(detail.data).map(e=>{
+		return(
+			
+			
+
+					e.image_url &&
+
+					<div className="page-content space-top p-b40">
+							<div className="container">
+						<div className="detail-area">
+							<div className="dz-media-card style-2">
+								<div className="dz-media">
+													<img src={e.image_url} alt=""/>
+										</div>
+										<div className="dz-content">
+											<div className="left-content">
+												<h4 className="title">Chelsea, 21</h4>
+												<p className="mb-0"><i className="icon feather icon-map-pin"></i> 5 miles away</p>
+											</div>
+											<a href="javascript:void(0);" className="dz-icon"><i className="flaticon flaticon-star-1"></i></a>
+										</div>
+									</div>
+									<div className="detail-bottom-area">
+										<div className="about">
+											<h6 className="title">Basic information</h6>
+											<p className="para-text">Just moved back to jakarata after living at India for 10+ years. Di luar terlifiat cenger - center di dalam.</p>					
+										</div>
+										<div className="intrests mb-3">
+											<h6 className="title">Intrests</h6>
+											<ul className="dz-tag-list">
+												<li> 
+													<div className="dz-tag">
+														<i className="icon feather icon-camera"></i>
+														<span>Photography</span>
+													</div>
+												</li>
+										<li> 
+											<div className="dz-tag">
+												<i className="icon feather icon-music"></i>
+												<span>Music</span>
+											</div>
+										</li>
+										<li> 
+											<div className="dz-tag">
+												<i className="icon feather icon-book"></i>
+												<span>Study</span>
+											</div>
+										</li>
+										<li> 
+											<div className="dz-tag">
+												<i className="icon feather icon-film"></i>
+													<span>Movies</span>
+												</div>
+											</li>
+											<li> 
+												<div className="dz-tag">
+													<i className="icon feather icon-instagram"></i>
+													<span>Instagram</span>
+												</div>
+											</li>
+											<li> 
+												<div className="dz-tag">
+													<i className="icon feather icon-map-pin"></i>
+													<span>Travelling</span>
+												</div>
+											</li>
+									</ul>
+								</div>
+								<div className="languages mb-3">
+									<h6 className="title">Languages</h6>
+									<ul className="dz-tag-list">
+										<li> 
+											<div className="dz-tag">
+												<span>English</span>
+											</div>
+										</li>
+										<li> 
+											<div className="dz-tag">
+												<span>Spanish</span>
+											</div>
+										</li>
+										<li> 
+											<div className="dz-tag">
+												<span>German</span>
+											</div>
+										</li>
+									</ul>
+								</div>
+							</div>
+							</div>
 						</div>
-						<a href="javascript:void(0);" className="dz-icon"><i className="flaticon flaticon-star-1"></i></a>
 					</div>
-				</div>
-				<div className="detail-bottom-area">
-					<div className="about">
-						<h6 className="title">Basic information</h6>
-						<p className="para-text">Just moved back to jakarata after living at India for 10+ years. Di luar terlifiat cenger - center di dalam.</p>					
-					</div>
-					<div className="intrests mb-3">
-						<h6 className="title">Intrests</h6>
-						<ul className="dz-tag-list">
-							<li> 
-								<div className="dz-tag">
-									<i className="icon feather icon-camera"></i>
-									<span>Photography</span>
-								</div>
-							</li>
-							<li> 
-								<div className="dz-tag">
-									<i className="icon feather icon-music"></i>
-									<span>Music</span>
-								</div>
-							</li>
-							<li> 
-								<div className="dz-tag">
-									<i className="icon feather icon-book"></i>
-									<span>Study</span>
-								</div>
-							</li>
-							<li> 
-								<div className="dz-tag">
-									<i className="icon feather icon-film"></i>
-									<span>Movies</span>
-								</div>
-							</li>
-							<li> 
-								<div className="dz-tag">
-									<i className="icon feather icon-instagram"></i>
-									<span>Instagram</span>
-								</div>
-							</li>
-							<li> 
-								<div className="dz-tag">
-									<i className="icon feather icon-map-pin"></i>
-									<span>Travelling</span>
-								</div>
-							</li>
-						</ul>
-					</div>
-					<div className="languages mb-3">
-						<h6 className="title">Languages</h6>
-						<ul className="dz-tag-list">
-							<li> 
-								<div className="dz-tag">
-									<span>English</span>
-								</div>
-							</li>
-							<li> 
-								<div className="dz-tag">
-									<span>Spanish</span>
-								</div>
-							</li>
-							<li> 
-								<div className="dz-tag">
-									<span>German</span>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+
+				)
+			
+
+		
+	})}
+	
 	{/* <!-- Page Content End -->
 	<!-- Menubar --> */}
 	<div className="footer fixed">
