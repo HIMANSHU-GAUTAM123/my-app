@@ -21,7 +21,7 @@ import { RWebShare } from "react-web-share";
 
 const Profile = () => {
 	const[detail,setDetail]=useState(null);
-	const { subId, mainId } = useParams();
+	const { main,subId, mainId } = useParams();
 	useEffect(() => {
 		const fetchData = async () => {
 		  try {
@@ -80,7 +80,7 @@ const Profile = () => {
 			
 
 					e.image_url &&
-
+<div>
 					<div className="page-content space-top p-b40">
 							<div className="container">
 						<div className="detail-area">
@@ -90,56 +90,42 @@ const Profile = () => {
 										</div>
 										<div className="dz-content">
 											<div className="left-content">
-												<h4 className="title">Chelsea, 21</h4>
-												<p className="mb-0"><i className="icon feather icon-map-pin"></i> 5 miles away</p>
+											<span class="badge badge-primary mb-2">{e.category_name}</span>
+											
+												{/* <p className="mb-0"><i className="icon feather icon-map-pin"></i> 5 miles away</p> */}
 											</div>
-											<a href="javascript:void(0);" className="dz-icon"><i className="flaticon flaticon-star-1"></i></a>
+											<div class="dz-icon ms-auto me-0"><i class="flaticon flaticon-star-1"></i></div>
 										</div>
 									</div>
 									<div className="detail-bottom-area">
 										<div className="about">
 											<h6 className="title">Basic information</h6>
-											<p className="para-text">Just moved back to jakarata after living at India for 10+ years. Di luar terlifiat cenger - center di dalam.</p>					
+											<p className="para-text">{e.title}</p>					
 										</div>
 										<div className="intrests mb-3">
-											<h6 className="title">Intrests</h6>
+											<h6 className="title">Tags</h6>
 											<ul className="dz-tag-list">
 												<li> 
 													<div className="dz-tag">
-														<i className="icon feather icon-camera"></i>
-														<span>Photography</span>
+														<i className=""></i>
+														<span>{e.category_name}</span>
 													</div>
 												</li>
 										<li> 
 											<div className="dz-tag">
-												<i className="icon feather icon-music"></i>
-												<span>Music</span>
+												<i className=""></i>
+												<span>{e.author_name}</span>
 											</div>
 										</li>
 										<li> 
 											<div className="dz-tag">
-												<i className="icon feather icon-book"></i>
-												<span>Study</span>
+												<i className=""></i>
+												<span>{e.badge_name}</span>
 											</div>
 										</li>
-										<li> 
-											<div className="dz-tag">
-												<i className="icon feather icon-film"></i>
-													<span>Movies</span>
-												</div>
-											</li>
-											<li> 
-												<div className="dz-tag">
-													<i className="icon feather icon-instagram"></i>
-													<span>Instagram</span>
-												</div>
-											</li>
-											<li> 
-												<div className="dz-tag">
-													<i className="icon feather icon-map-pin"></i>
-													<span>Travelling</span>
-												</div>
-											</li>
+										
+											
+											
 									</ul>
 								</div>
 								<div className="languages mb-3">
@@ -166,6 +152,26 @@ const Profile = () => {
 							</div>
 						</div>
 					</div>
+					<div className="footer fixed">
+					<div className="dz-icon-box">
+						<Link to={`/${main}/${subId}`} className="icon dz-flex-box dislike"><i className="flaticon flaticon-cross font-18"></i></Link>
+						<div className="icon dz-flex-box dislike"> 
+						<RWebShare 
+					data={{
+					  text: "Like humans, flamingos make friends for life",
+					  url: `${e.image_url}`,
+					  title: "Flamingos",
+					}}
+					onClick={() => console.log("shared successfully!")}
+				  >
+					<i className="fa-solid fa-share"></i>
+				  </RWebShare>
+			
+				  </div>
+						
+					</div>
+				</div>
+				</div>
 
 				)
 			
@@ -173,28 +179,7 @@ const Profile = () => {
 		
 	})}
 	
-	{/* <!-- Page Content End -->
-	<!-- Menubar --> */}
-	<div className="footer fixed">
-		<div className="dz-icon-box">
-			<Link to="/post" className="icon dz-flex-box dislike"><i className="flaticon flaticon-cross font-18"></i></Link>
-			<div className="icon dz-flex-box dislike"> 
-			<RWebShare 
-        data={{
-          text: "Like humans, flamingos make friends for life",
-          url: "https://on.natgeo.com/2zHaNup",
-          title: "Flamingos",
-        }}
-        onClick={() => console.log("shared successfully!")}
-      >
-        <i className="fa-solid fa-share"></i>
-      </RWebShare>
-
-	  </div>
-			
-		</div>
-	</div>
-	{/* <!-- Menubar --> */}
+	
 </div>  
 
 
