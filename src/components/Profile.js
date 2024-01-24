@@ -22,6 +22,7 @@ import { RWebShare } from "react-web-share";
 const Profile = () => {
 	const[detail,setDetail]=useState(null);
 	const { main,subId, mainId } = useParams();
+	const navigate=useNavigate();
 	useEffect(() => {
 		const fetchData = async () => {
 		  try {
@@ -58,10 +59,10 @@ const Profile = () => {
 		<header className="header header-fixed bg-white">
 			<div className="container">
 				<div className="header-content">
-					<div className="left-content">
-						<a href="javascript:void(0);" className="back-btn">
+					<div className="left-content" onClick={() => navigate(-1)}>
+						
 							<i className="icon feather icon-arrow-left"></i>
-						</a>
+						
 						<h6 className="title">Back</h6>
 					</div>
 					<div className="mid-content header-logo">
@@ -154,7 +155,7 @@ const Profile = () => {
 					</div>
 					<div className="footer fixed">
 					<div className="dz-icon-box">
-						<Link to={`/${main}/${subId}`} className="icon dz-flex-box dislike"><i className="flaticon flaticon-cross font-18"></i></Link>
+						<div onClick={() => navigate(-1)} to={`/${main}/${subId}`} className="icon dz-flex-box dislike"><i className="flaticon flaticon-cross font-18"></i></div>
 						<div className="icon dz-flex-box dislike"> 
 						<RWebShare 
 					data={{

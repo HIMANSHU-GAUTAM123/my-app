@@ -53,7 +53,7 @@ const Author = () => {
     }
   };
 
-  const handleImageClick = async(categoryId) => {
+  const handleImageClick = async(categoryId,topic) => {
 	
 	
 
@@ -61,7 +61,7 @@ const Author = () => {
 	dispatch(setBack(3));
 	
 
-	navigate(`/authors/${categoryId}`);
+	navigate(`/authors/${topic}/${categoryId}`);
 	
   };
 	  
@@ -81,13 +81,13 @@ const Author = () => {
 
  {/* <!-- Header --> */}
 		<header class="header header-fixed bg-white">
-			<div class="container">
+			<div class="container" onClick={() => navigate(-1)}>
 				<div class="header-content">
 					<div class="left-content">
-					<Link to="/">
+					
 							<i class="icon feather icon-arrow-left"></i>
-						</Link>
-						<h6 class="title">Back</h6>
+						
+						<h6 class="title" >Back1</h6>
 					</div>
 					<div class="mid-content header-logo">
 					</div>
@@ -111,7 +111,7 @@ const Author = () => {
 								return(
 									e["image_url"] &&
 								<div className="col-6">
-								<div className="dz-media-card style-4"  onClick={()=> handleImageClick(e["id"])}>
+								<div className="dz-media-card style-4"  onClick={()=> handleImageClick(e["id"],e["author_name"])}>
 								<div className="dz-media">
 								<img src={e["image_url"]} alt=""  />
 								</div>

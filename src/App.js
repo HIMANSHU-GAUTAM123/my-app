@@ -21,14 +21,15 @@ function App() {
      <BrowserRouter>
           <Routes>
            
-            <Route path="/categories/:postid" element={<CategoriesPost/>}></Route>
-            <Route path="/authors/:postid" element={<AuthorPost/>}></Route>
-            <Route path="/tags/:postid" element={<TagPost/>}></Route>
-            <Route path="/:main/:subId/:mainId" element={<Profile/>}></Route>
+            <Route path="/categories/:topic/:postid" element={<CategoriesPost/>}></Route>
+            <Route path="/authors/:topic/:postid" element={<AuthorPost/>}></Route>
+            <Route path="/tags/:topic/:postid" element={<TagPost/>}></Route>
+            <Route path="/quotes/:main/:subId/:mainId" element={<Profile/>}></Route>
             <Route path="/" element={<Explore/>}></Route>
-            <Route path="/categories" element={<Categories/>}></Route>
-            <Route path="/authors" element={<Author/>}></Route>
-            <Route path="/tags" element={<Tags/>}></Route>
+            <Route path="/quotes-collections" element={<Explore/>}></Route>
+            <Route path="/quotes-collections/categories" element={<Categories/>}></Route>
+            <Route path="/quotes-collections/authors" element={<Author/>}></Route>
+            <Route path="/quotes-collections/tags" element={<Tags/>}></Route>
 
             </Routes>
             </BrowserRouter>

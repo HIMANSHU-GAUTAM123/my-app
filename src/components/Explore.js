@@ -225,7 +225,7 @@ const Explore = () => {
 		}
 	  }, [res, author, badges]);
 
-	  const handleImageClick = async(categoryId) => {
+	  const handleImageClick = async(categoryId,topic) => {
 		
 		 dispatch(setAndOpenImage(categoryId));
 		 const s="category_id";
@@ -236,10 +236,10 @@ const Explore = () => {
 
 		
 
-		 navigate(`/categories/${categoryId}`);
+		 navigate(`/categories/${topic}/${categoryId}`);
 		
 	  };
-	  const handleImageClick1 = async(categoryId) => {
+	  const handleImageClick1 = async(categoryId,topic) => {
 		
 		dispatch(setAndOpenImage(categoryId));
 		const s="author_id";
@@ -249,14 +249,14 @@ const Explore = () => {
 
 	   
 
-	   navigate(`/authors/${categoryId}`);
+		navigate(`/authors/${topic}/${categoryId}`);
 	   
 	 };
-	 const handleImageClick2 = async(categoryId) => {
+	 const handleImageClick2 = async(categoryId,topic) => {
 		
 		dispatch(setAndOpenImage(categoryId));		
 		dispatch(setBack(1));
-		navigate(`/tags/${categoryId}`);
+		navigate(`/tags/${topic}/${categoryId}`);
 	   
 	 };
 
@@ -311,7 +311,7 @@ const Explore = () => {
 					<div className="tab-pane fade active show" id="profile1" role="tabpanel">
 						<div className="title-bar">
 							<h6 className="title">Categories</h6>
-							<Link to="/categories"><p>View All</p></Link>
+							<Link to="/quotes-collections/categories"><p>View All</p></Link>
 						</div>
 						<div className="swiper-btn-center-lr">
 							<div className="swiper spot-swiper1 mb-3">
@@ -323,7 +323,7 @@ const Explore = () => {
 												return(
 													e["image_url"] &&
 									<div className="swiper-slide">
-									<div className="dz-media-card style-4" onClick={()=> handleImageClick(e["id"])}>
+									<div className="dz-media-card style-4" onClick={()=> handleImageClick(e["id"],e["category_name"])}>
 									
 										<div className="dz-media">
 										<img src={e["image_url"]} alt=""  />
@@ -352,7 +352,7 @@ const Explore = () => {
 
 							<div className="title-bar">
 								<h6 className="title">Authors</h6>
-								<Link to="/authors"><p>View All</p></Link>
+								<Link to="/quotes-collections/authors"><p>View All</p></Link>
 							</div>
 
 							<div className="swiper spot-swiper1 mb-3">
@@ -366,7 +366,7 @@ const Explore = () => {
 																return(
 																	e["image_url"] &&
 														<div className="swiper-slide">
-														<div className="dz-media-card style-4" onClick={()=> handleImageClick1(e["id"])}>
+														<div className="dz-media-card style-4" onClick={()=> handleImageClick1(e["id"],e["author_name"])}>
 														
 														<div className="dz-media">
 														<img src={e["image_url"]} alt=""  />
@@ -394,7 +394,7 @@ const Explore = () => {
 
 							<div className="title-bar">
 								<h6 className="title">Tags</h6>
-								<Link to="/tags"><p>View All</p></Link>
+								<Link to="/quotes-collections/tags"><p>View All</p></Link>
 							</div>
 
 							<div className="swiper spot-swiper1 mb-3">
@@ -408,7 +408,7 @@ const Explore = () => {
 											return(
 												e["image_url"] &&
 									<div className="swiper-slide">
-									<div className="dz-media-card style-4"  onClick={()=> handleImageClick2(e["id"])}>
+									<div className="dz-media-card style-4"  onClick={()=> handleImageClick2(e["id"],e["badge_name"])}>
 									
 									<div className="dz-media">
 									<img src={e["image_url"]} alt=""  />

@@ -21,19 +21,6 @@ const TagPost = () => {
   const prev=useSelector(back);
   const { postid } = useParams();
 
-  const handleClick=()=>{
-
-    if(prev==1){
-      setPath("/")
-    }
-   
-    else{
-      setPath("/tags");
-  
-    }
-    navigate(path);
-
-  }
 
  
 
@@ -200,8 +187,8 @@ const TagPost = () => {
       // Fetch data when the component mounts
       fetchData();
     },[]);
-    const handleImageClick = async(categoryId) => {
-      navigate(`/${auth}/${postid}/${categoryId}`);
+    const handleImageClick = async(categoryId,topic,topic2) => {
+      navigate(`/quotes/${topic}/${topic2}/${categoryId}`);
       
       };
 
@@ -224,7 +211,7 @@ const TagPost = () => {
 <header className="header header-fixed bg-white">
 			<div className="container">
 				<div className="header-content">
-					<div className="left-content" onClick={handleClick}>
+					<div className="left-content"onClick={() => navigate(-1)}>
 						<div >
 							<i className="icon feather icon-arrow-left"></i>
               </div>
@@ -259,7 +246,7 @@ const TagPost = () => {
 
 
       									
-      									<div className="dzSwipe_card" onClick={()=> handleImageClick(e["id"])}>
+      									<div className="dzSwipe_card" onClick={()=> handleImageClick(e["id"],e["badge_name"],e["sub_category_name"])}>
                         <div className="dz-media">
                         <img src={e["image_url"]} alt=""  />
                         </div>

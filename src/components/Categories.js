@@ -47,15 +47,12 @@ const Categories = () => {
           getData();
 
 	},[index])
-	const handleImageClick = async(categoryId) => {
+	const handleImageClick = async(categoryId,topic) => {
 		
-		dispatch(setAndOpenImage({category_id:categoryId}));
-		
-		
-		dispatch(setBack(2));
+	
 		
 
-		navigate(`/categories/${categoryId}`);
+		navigate(`/categories/${topic}/${categoryId}`);
 		
 	  };
 	  useEffect(()=>{
@@ -109,10 +106,9 @@ const Categories = () => {
 	<header className="header header-fixed bg-white">
 			<div className="container">
 				<div className="header-content">
-					<div className="left-content">
-						<Link to="/">
-							<i className="icon feather icon-arrow-left"></i>
-						</Link>
+					<div className="left-content" onClick={() => navigate(-1)}>
+												<i className="icon feather icon-arrow-left"></i>
+						
 						<h6 className="title">Back</h6>
 					</div>
 					<div className="mid-content header-logo">
@@ -137,8 +133,8 @@ const Categories = () => {
 								return(
 									e["image_url"] &&
 								<div className="col-6" >
-								<div  onClick={()=> handleImageClick(e["id"])} className="dz-media-card style-4">
-								<div  onClick={()=> handleImageClick(e["id"])} className="dz-media">
+								<div  onClick={()=> handleImageClick(e["id"],e["category_name"])} className="dz-media-card style-4">
+								<div   className="dz-media">
 								<img  src={e["image_url"]} alt=""  />
 								</div>
 	     						<div className="dz-content">

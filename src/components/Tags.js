@@ -53,14 +53,12 @@ const Tags = () => {
       resContainerRef.current.scrollIntoView({ behavior: 'smooth' });
     }
   };
-  const handleImageClick = async(categoryId) => {
+  const handleImageClick = async(categoryId,topic) => {
 		
-	dispatch(setAndOpenImage({badge_id:categoryId}));
 	
-	dispatch(setBack(4));
 	
 
-	navigate(`/tags/${categoryId}`);
+	navigate(`/tags/${topic}/${categoryId}`);
 	
   };
 	  
@@ -104,10 +102,10 @@ const Tags = () => {
 	<header class="header header-fixed bg-white">
 			<div class="container">
 				<div class="header-content">
-					<div class="left-content">
-						<Link to="/">
+					<div class="left-content" onClick={() => navigate(-1)}>
+						
 							<i class="icon feather icon-arrow-left"></i>
-						</Link>
+						
 						<h6 class="title">Back</h6>
 					</div>
 					<div class="mid-content header-logo">
@@ -132,7 +130,7 @@ const Tags = () => {
 								return(
 									e["image_url"] &&
 								<div className="col-6">
-								<div className="dz-media-card style-4"  onClick={()=> handleImageClick(e["id"])}>
+								<div className="dz-media-card style-4"  onClick={()=> handleImageClick(e["id"],e["badge_name"])}>
 								<div className="dz-media">
 								<img src={e["image_url"]} alt=""  />
 								</div>
