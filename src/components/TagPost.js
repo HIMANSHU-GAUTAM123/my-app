@@ -4,8 +4,7 @@ import React from 'react';
 import {useEffect,useState} from 'react';
 import {Link} from 'react-router-dom';
 import axios from '../api/axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectImageId, closeImage, selectedSource,back } from '../store/categorySlice';
+
 import Loader from './Loader';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
@@ -14,11 +13,9 @@ const TagPost = () => {
   const [post, setPost] =useState(null);
   const [path, setPath] =useState(null);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const auth="badges";
-  const selectedImageId = useSelector(selectImageId);
-  const source=useSelector(selectedSource);
-  const prev=useSelector(back);
+
+ 
+
   const { postid } = useParams();
 
 

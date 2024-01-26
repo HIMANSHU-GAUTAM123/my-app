@@ -4,8 +4,7 @@ import React from 'react';
 import {useEffect,useState} from 'react';
 import {Link} from 'react-router-dom';
 import axios from '../api/axios';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectImageId, closeImage, selectedSource,back } from '../store/categorySlice';
+
 import Loader from './Loader';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
@@ -15,11 +14,8 @@ const AuthorPost = () => {
   const [path, setPath] =useState(null);
   
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const auth="authors";
-  const selectedImageId = useSelector(selectImageId);
-  const source=useSelector(selectedSource);
-  const prev=useSelector(back);
+
+  
   const { postid } = useParams();
 
   
@@ -215,6 +211,7 @@ const AuthorPost = () => {
 
 {/* <!-- Header --> */}
 <header className="header header-fixed bg-white">
+     
 			<div className="container">
 				<div className="header-content">
 					<div className="left-content"onClick={() => navigate(-1)}>

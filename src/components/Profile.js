@@ -10,8 +10,7 @@ import axios from '../api/axios';
 import Loader from './Loader';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { useDispatch, useSelector } from 'react-redux';
-import {  setAndOpenImage } from '../store/categorySlice';
+
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 
@@ -149,11 +148,7 @@ const Profile = () => {
 										</li>
 									</ul>
 								</div>
-							</div>
-							</div>
-						</div>
-					</div>
-					<div className="footer fixed">
+								<div className="fixed ">
 					<div className="dz-icon-box">
 						<div onClick={() => navigate(-1)} to={`/${main}/${subId}`} className="icon dz-flex-box dislike"><i className="flaticon flaticon-cross font-18"></i></div>
 						<div className="icon dz-flex-box dislike"> 
@@ -172,6 +167,13 @@ const Profile = () => {
 						
 					</div>
 				</div>
+							</div>
+							</div>
+							
+						</div>
+						
+					</div>
+					
 				</div>
 
 				)

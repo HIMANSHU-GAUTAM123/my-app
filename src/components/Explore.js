@@ -9,8 +9,7 @@ import {Link} from 'react-router-dom';
 import axios from '../api/axios';
 import Loader from './Loader';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import {  setAndOpenImage, setAndOpenSource ,setBack} from '../store/categorySlice';
+
 
 
 const Explore = () => {
@@ -20,7 +19,7 @@ const Explore = () => {
 	const[badges,setBadges]=useState(null);
 	const[isloading,setIsloading]=useState(true);
 	const navigate = useNavigate();
-	const dispatch = useDispatch();
+	
 	const lim=4;
 	
 
@@ -227,11 +226,6 @@ const Explore = () => {
 
 	  const handleImageClick = async(categoryId,topic) => {
 		
-		 dispatch(setAndOpenImage(categoryId));
-		 const s="category_id";
-		 dispatch(setAndOpenSource(s));
-		 dispatch(setBack(1));
-		
 
 
 		
@@ -241,10 +235,7 @@ const Explore = () => {
 	  };
 	  const handleImageClick1 = async(categoryId,topic) => {
 		
-		dispatch(setAndOpenImage(categoryId));
-		const s="author_id";
-		dispatch(setAndOpenSource(s));
-		dispatch(setBack(1));
+		
 
 
 	   
@@ -254,8 +245,7 @@ const Explore = () => {
 	 };
 	 const handleImageClick2 = async(categoryId,topic) => {
 		
-		dispatch(setAndOpenImage(categoryId));		
-		dispatch(setBack(1));
+	
 		navigate(`/tags/${topic}/${categoryId}`);
 	   
 	 };
@@ -272,40 +262,15 @@ const Explore = () => {
 		
 		<body class="header-large bg-white" data-theme-color="color-primary-2">
 		<div class="page-wrapper">
-        {/* <!-- Header -->	 */}
-		<header className="header header-fixed border-0 style-2 bg-white">
-			<div className="container" >
-				<div className="header-content">
-					<div className="left-content header-logo logo-lg">
-					
-							
-						
-					</div>
-					<div className="mid-content">
-					</div>
-					<div className="right-content d-flex gap-2">
-						
-					</div>
-				</div>
-			</div>
-		</header>
-	{/* <!-- Header --> */}
 
 
+	     
 
-      
-      <div className="page-content p-t100 p-b50">
+        <div className="page-content p-t100 p-b50">
 		<div className="container">
 			{/* <!-- Nav tabs --> */}
 			<div className="default-tab style-2">
-				<ul className="nav nav-tabs" role="tablist">
-					<li className="nav-item" role="presentation">
-						<a className="nav-link" data-bs-toggle="tab" href="#home1" aria-selected="false" role="tab" tabindex="-1">12 Likes</a>
-					</li>
-					<li className="nav-item" role="presentation">
-						<a className="nav-link active" data-bs-toggle="tab" href="#profile1" aria-selected="true" role="tab">Top Picks</a>
-					</li>
-				</ul>
+				
 				<div className="tab-content">
 					
 					<div className="tab-pane fade active show" id="profile1" role="tabpanel">
@@ -437,26 +402,7 @@ const Explore = () => {
 			</div>
 		</div>								
 	</div>
-	{/* <!-- Page Content End --> */}
-     {/* <!-- Menubar --> */}
-	<div className="menubar-area style-3 footer-fixed">
-		<div className="toolbar-inner menubar-nav">
-			
-			<a href="explore.html" className="nav-link">
-				<i className="flaticon flaticon-magnifying-glass"></i>
-			</a>
-			<Link to="/" className="nav-link">
-				<i className="flaticon flaticon-sparkle"></i>
-			</Link>
-			<a href="chat-list.html" className="nav-link">
-				<i className="flaticon flaticon-chat-2"></i>
-			</a>
-			<a href="profile.html" className="nav-link">
-				<i className="fa-solid fa-user"></i>
-			</a>
-		</div>
-	</div>
-	{/* <!-- Menubar --> */}
+	
 
 
 				</div>

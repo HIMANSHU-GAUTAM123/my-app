@@ -10,8 +10,7 @@ import axios from '../api/axios';
 import Loader from './Loader';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { useDispatch, useSelector } from 'react-redux';
-import {  setAndOpenImage,setBack } from '../store/categorySlice';
+
 import { useNavigate } from 'react-router-dom';
 const Tags = () => {
  
@@ -21,7 +20,7 @@ const Tags = () => {
 	const[index,setIndex]=useState(1);
 	const[cnt,setCnt]=useState(0);
 	const resContainerRef = useRef(null);
-	const dispatch = useDispatch();
+	
 	const navigate = useNavigate();
 	const lim=8;
 	useEffect(()=>{

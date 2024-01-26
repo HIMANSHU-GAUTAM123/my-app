@@ -10,8 +10,8 @@ import axios from '../api/axios';
 import Loader from './Loader';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
-import { useDispatch, useSelector } from 'react-redux';
-import {  setAndOpenImage,setAndOpenSource ,setBack} from '../store/categorySlice';
+
+
 import { useNavigate } from 'react-router-dom';
 
 const Author = () => {
@@ -20,7 +20,7 @@ const Author = () => {
 	const[index,setIndex]=useState(1);
 	const[cnt,setCnt]=useState(0);
 	const resContainerRef = useRef(null);
-	const dispatch = useDispatch();
+	
 	const navigate = useNavigate();
 	const lim=8;
 	useEffect(()=>{
@@ -58,7 +58,6 @@ const Author = () => {
 	
 
 	
-	dispatch(setBack(3));
 	
 
 	navigate(`/authors/${topic}/${categoryId}`);
@@ -87,7 +86,7 @@ const Author = () => {
 					
 							<i class="icon feather icon-arrow-left"></i>
 						
-						<h6 class="title" >Back1</h6>
+						<h6 class="title" >Back</h6>
 					</div>
 					<div class="mid-content header-logo">
 					</div>
