@@ -230,7 +230,7 @@ const Explore = () => {
 
 		
 
-		 navigate(`/categories/${topic}/${categoryId}`);
+		 navigate(`${process.env.PUBLIC_URL}/category/${topic.toLowerCase()}-quotes/${categoryId}`);
 		
 	  };
 	  const handleImageClick1 = async(categoryId,topic) => {
@@ -240,13 +240,13 @@ const Explore = () => {
 
 	   
 
-		navigate(`/authors/${topic}/${categoryId}`);
+		navigate(`${process.env.PUBLIC_URL}/author/${topic.toLowerCase()}-quotes/${categoryId}`);
 	   
 	 };
 	 const handleImageClick2 = async(categoryId,topic) => {
 		
 	
-		navigate(`/tags/${topic}/${categoryId}`);
+		navigate(`${process.env.PUBLIC_URL}/tag/${topic.toLowerCase()}/${categoryId}`);
 	   
 	 };
 
@@ -266,7 +266,7 @@ const Explore = () => {
 
 	     
 
-        <div className="page-content p-t100 p-b50">
+        <div className="page-content p-t50 p-b50">
 		<div className="container">
 			{/* <!-- Nav tabs --> */}
 			<div className="default-tab style-2">
@@ -276,7 +276,7 @@ const Explore = () => {
 					<div className="tab-pane fade active show" id="profile1" role="tabpanel">
 						<div className="title-bar">
 							<h6 className="title">Categories</h6>
-							<Link to="/quotes-collections/categories"><p>View All</p></Link>
+							<Link to={`${process.env.PUBLIC_URL}/quotes-collection/categories`}><p>View All</p></Link>
 						</div>
 						<div className="swiper-btn-center-lr">
 							<div className="swiper spot-swiper1 mb-3">
@@ -317,7 +317,7 @@ const Explore = () => {
 
 							<div className="title-bar">
 								<h6 className="title">Authors</h6>
-								<Link to="/quotes-collections/authors"><p>View All</p></Link>
+								<Link to={`${process.env.PUBLIC_URL}/quotes-collection/authors`}><p>View All</p></Link>
 							</div>
 
 							<div className="swiper spot-swiper1 mb-3">
@@ -359,7 +359,7 @@ const Explore = () => {
 
 							<div className="title-bar">
 								<h6 className="title">Tags</h6>
-								<Link to="/quotes-collections/tags"><p>View All</p></Link>
+								<Link to={`${process.env.PUBLIC_URL}/quotes-collection/tags`}><p>View All</p></Link>
 							</div>
 
 							<div className="swiper spot-swiper1 mb-3">

@@ -35,11 +35,11 @@ const Settings = () => {
 				</li>
 				
 				<li>
-					<Link to={"/quotes-collections/categories"} class="nav-link" >
+					<Link to={"/quotes-collection/categories"} class="nav-link" >
 						<span class="dz-icon">
 							<i class="icon feather icon-grid"></i>
 						</span>
-						<span>Components</span>
+						<span>Categories</span>
 					</Link>
 				</li>
 				</ul>
@@ -59,8 +59,8 @@ const Settings = () => {
 					</li>
 				</ul>
 				<div class="app-info">
-					<h6 class="name">W3Dating - Dating App</h6>
-					<span class="ver-info">App Version 1.1</span>
+					<h6 class="name">9letters.com</h6>
+					<span class="ver-info">Version 1.0</span>
 				</div>
 			</div>
 		</div>

@@ -185,7 +185,7 @@ const Swiper = () => {
       fetchData();
     },[]);
     const handleImageClick = async(categoryId,topic,topic2) => {
-      navigate(`/quotes/${topic}/${topic2}/${categoryId}`);
+      navigate(`${process.env.PUBLIC_URL}/quotes/${topic.toLowerCase()}/${topic2}/${categoryId}`);
       
       };
 
@@ -243,7 +243,7 @@ const Swiper = () => {
 
 
       								
-      									<div className="dzSwipe_card" onClick={()=> handleImageClick(e["id"],e["category_name"],e["sub_category_name"])}>
+      									<div className="dzSwipe_card" onClick={()=> handleImageClick(e["id"],e["category_name"],e["url_title"])}>
                         <div className="dz-media">
                         <img src={e["image_url"]} alt=""  />
                         </div>

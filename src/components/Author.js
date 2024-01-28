@@ -60,7 +60,7 @@ const Author = () => {
 	
 	
 
-	navigate(`/authors/${topic}/${categoryId}`);
+	navigate(`${process.env.PUBLIC_URL}/author/${topic.toLowerCase()}-quotes/${categoryId}`);
 	
   };
 	  
@@ -98,7 +98,7 @@ const Author = () => {
 	{/* <!-- Header --> */}
 
 {/* page content start */}
-<div class="page-content p-t100 p-b50"ref={resContainerRef} >
+<div class="page-content p-t60 p-b50"ref={resContainerRef} >
 		<div class="container">
   <div class="tab-content" >
 						<div className="row g-2">

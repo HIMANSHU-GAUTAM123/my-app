@@ -51,7 +51,7 @@ const Categories = () => {
 	
 		
 
-		navigate(`/categories/${topic}/${categoryId}`);
+		navigate(`${process.env.PUBLIC_URL}/category/${topic.toLowerCase()}-quotes/${categoryId}`);
 		
 	  };
 	  useEffect(()=>{
@@ -120,7 +120,7 @@ const Categories = () => {
 	{/* <!-- Header --> */}
 
 {/* page content start */}
-<div className="page-content p-t100 p-b50"ref={resContainerRef} >
+<div className="page-content p-t60 p-b50"ref={resContainerRef} >
 		<div className="container">
   <div className="tab-content" >
 						<div className="row g-2">

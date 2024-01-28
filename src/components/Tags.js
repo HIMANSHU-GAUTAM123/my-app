@@ -57,7 +57,7 @@ const Tags = () => {
 	
 	
 
-	navigate(`/tags/${topic}/${categoryId}`);
+	navigate(`${process.env.PUBLIC_URL}/tag/${topic.toLowerCase()}/${categoryId}`);
 	
   };
 	  
@@ -117,7 +117,7 @@ const Tags = () => {
 	{/* <!-- Header --> */}
 
 {/* page content start */}
-<div class="page-content p-t100 p-b50"ref={resContainerRef} >
+<div class="page-content p-t60 p-b50"ref={resContainerRef} >
 		<div class="container">
   <div class="tab-content" >
 						<div className="row g-2">

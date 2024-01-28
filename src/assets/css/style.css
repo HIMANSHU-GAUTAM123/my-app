@@ -11601,6 +11601,7 @@ section {
   -ms-transition: all 0.2s;
   transition: all 0.2s; }
   .sidebar .inner-sidebar {
+    padding-top: 20px;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -12057,7 +12058,7 @@ section {
         .menubar-area.style-3 .menubar-nav .nav-link:after {
           content: none; }
         .menubar-area.style-3 .menubar-nav .nav-link i {
-          font-size: 20px;
+          font-size: 22px;
           height: unset;
           width: unset;
           margin: 0 auto;
@@ -14624,7 +14625,7 @@ button {
       background-color: rgba(255, 255, 255, 0.2);
       padding: 4px 10px; }
   .dz-media-card.style-2 .dz-media {
-    height: calc(100vh - 350px);
+    height: auto; /* calc(100vh - 350px); */
     border-radius: var(--border-radius); }
     .dz-media-card.style-2 .dz-media img {
       height: 100%;
@@ -18631,7 +18632,7 @@ svg.radial-progress {
     left: 0;
     top: 0;
     width: 100%;
-    height: 100%;
+    height: auto; /*100%; */
     transform-origin: 50% 100%; }
     .dzSwipe_card.reset {
       transition: transform 0.3s;
@@ -18806,7 +18807,7 @@ svg.radial-progress {
 
 .fixed-full-area {
   position: absolute;
-  height: 100%;
+  height: 90%;
   left: 50%;
   transform: translateX(-50%); }
 

@@ -31,18 +31,18 @@ function App() {
           
           <Routes>
            
-            <Route path="/categories/:topic/:postid" element={<CategoriesPost/>}></Route>
-            <Route path="/authors/:topic/:postid" element={<AuthorPost/>}></Route>
-            <Route path="/tags/:topic/:postid" element={<TagPost/>}></Route>
+            <Route path={`${process.env.PUBLIC_URL + '/category/:topic/:postid'}`} element={<CategoriesPost/>}></Route>
+            <Route path={`${process.env.PUBLIC_URL + '/author/:topic/:postid'}`} element={<AuthorPost/>}></Route>
+            <Route path={`${process.env.PUBLIC_URL + '/tag/:topic/:postid'}`} element={<TagPost/>}></Route>
             
-            <Route path="/" element={<Explore/>}></Route>
-            <Route path="/quotes-collections" element={<Explore/>}></Route>
-            <Route path="/quotes-collections/categories" element={<Categories/>}></Route>
-            <Route path="/quotes-collections/authors" element={<Author/>}></Route>
-            <Route path="/quotes-collections/tags" element={<Tags/>}></Route>
+            <Route path={`${process.env.PUBLIC_URL + '/'}`} element={<Explore/>}></Route>
+            <Route path={`${process.env.PUBLIC_URL + '/quotes-collection'}`} element={<Explore/>}></Route>
+            <Route path={`${process.env.PUBLIC_URL + '/quotes-collection/categories'}`} element={<Categories/>}></Route>
+            <Route path={`${process.env.PUBLIC_URL + '/quotes-collection/authors'}`} element={<Author/>}></Route>
+            <Route path={`${process.env.PUBLIC_URL + '/quotes-collection/tags'}`} element={<Tags/>}></Route>
             
 
-            <Route path="/quotes/:main/:subId/:mainId" element={<Profile/>}></Route>
+            <Route path={`${process.env.PUBLIC_URL + '/quotes/:main/:subId/:mainId'}`} element={<Profile/>}></Route>
 
             </Routes>
             <Footer />

@@ -1,6 +1,8 @@
 {
   "name": "my-app",
   "version": "0.1.0",
+  "homepage": "m/",
+  "start_url": "m/quotes-collection",
   "private": true,
   "proxy": "https://api.9ethics.com/api",
   "dependencies": {

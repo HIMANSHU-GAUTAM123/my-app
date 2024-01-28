@@ -99,9 +99,14 @@ const Profile = () => {
 									</div>
 									<div className="detail-bottom-area">
 										<div className="about">
-											<h6 className="title">Basic information</h6>
-											<p className="para-text">{e.title}</p>					
+											<h6 className="title">{e.title}</h6>
+											<p className="para-text">By {e.author_name}</p>					
 										</div>
+										{(!!e.about_author && e.about_author!='')?
+										<div className="about">
+											<h6 className="title">About Author</h6>
+											<p className="para-text">{e.about_author}</p>					
+										</div>:''}
 										<div className="intrests mb-3">
 											<h6 className="title">Tags</h6>
 											<ul className="dz-tag-list">
@@ -128,35 +133,16 @@ const Profile = () => {
 											
 									</ul>
 								</div>
-								<div className="languages mb-3">
-									<h6 className="title">Languages</h6>
-									<ul className="dz-tag-list">
-										<li> 
-											<div className="dz-tag">
-												<span>English</span>
-											</div>
-										</li>
-										<li> 
-											<div className="dz-tag">
-												<span>Spanish</span>
-											</div>
-										</li>
-										<li> 
-											<div className="dz-tag">
-												<span>German</span>
-											</div>
-										</li>
-									</ul>
-								</div>
+								
 								<div className="fixed ">
 					<div className="dz-icon-box">
-						<div onClick={() => navigate(-1)} to={`/${main}/${subId}`} className="icon dz-flex-box dislike"><i className="flaticon flaticon-cross font-18"></i></div>
+						<div onClick={() => navigate(-1)} to={`${process.env.PUBLIC_URL}/${main}/${subId}`} className="icon dz-flex-box dislike"><i className="flaticon flaticon-cross font-18"></i></div>
 						<div className="icon dz-flex-box dislike"> 
 						<RWebShare 
 					data={{
-					  text: "Like humans, flamingos make friends for life",
-					  url: `${e.image_url}`,
-					  title: "Flamingos",
+					  text: `${e.title}`,
+					  url: `${window.location.href}`,
+					  title: `Famous quote by ${e.author_name}`,
 					}}
 					onClick={() => console.log("shared successfully!")}
 				  >

@@ -32,17 +32,17 @@ const Footer = () => {
 	<div className="menubar-area style-3 footer-fixed">
 		<div className="toolbar-inner menubar-nav">
 			
-			<Link to="/" className="nav-link">
+			<Link to={`${process.env.PUBLIC_URL}/quotes-collection`} className="nav-link">
             <i class="fa-solid fa-house"></i>
 			</Link>
-			<Link to="/quotes-collections/categories" className="nav-link">
+			<Link to={`${process.env.PUBLIC_URL}/quotes-collection/categories`} className="nav-link">
 				<i className="flaticon flaticon-sparkle"></i>
 			</Link>
-			<Link to="/quotes-collections/authors" className="nav-link">
-				<i className="flaticon flaticon-chat-2"></i>
-			</Link>
-			<Link to="/quotes-collections/tags" className="nav-link">
+			<Link to={`${process.env.PUBLIC_URL}/quotes-collection/authors`} className="nav-link">
 				<i className="fa-solid fa-user"></i>
+			</Link>
+			<Link to={`${process.env.PUBLIC_URL}/quotes-collection/tags`} className="nav-link">
+				<i className="flaticon flaticon-chat-2"></i>
 			</Link>
             <div onClick={handle} class="menu-toggler">
 				<i class="icon feather icon-grid"></i>
