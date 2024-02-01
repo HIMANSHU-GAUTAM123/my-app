@@ -12,11 +12,34 @@ import { useNavigate } from 'react-router-dom';
 const AuthorPost = () => {
   const [post, setPost] =useState(null);
   const [path, setPath] =useState(null);
+  // const [swipe,setswipe]=useState(1);
+  // const[call,setcall]=useState(0);
+  // const lim=3;
+  
   
   const navigate = useNavigate();
 
   
   const { postid } = useParams();
+
+
+
+
+  // const handleSwipe = () => {
+  //   console.log(10000);
+  //   setswipe((prevSwipe) => {
+  //     if (prevSwipe >= lim) {
+  //       // If the user has swiped enough, make a new API call
+  //       setcall((prevCall) => prevCall + 1);
+  //       // Reset swipe count
+  //       return 1;
+  //     } else {
+  //       // Increment swipe count
+  //       return prevSwipe + 1;
+  //     }
+
+  //   });
+  // };
 
   
 
@@ -40,6 +63,7 @@ const AuthorPost = () => {
     lhh = () => {
       
       $(document).on('mousedown touchstart', '.dzSwipe_card:not(.inactive)', function (s) {
+        
         if (!o) {
           e = $(this);
           t = $('.dzSwipe_card__option.dzReject', e);
@@ -69,16 +93,16 @@ const AuthorPost = () => {
                 e.css('transform', 'translateX(' + d + 'px) rotate(' + r + 'deg)');
               }
   
-              console.log('dzCard_moveY->' + c);
+              // console.log('dzCard_moveY->' + c);
   
               const opacityY = d / 100;
-              console.log('opacityY->' + opacityY);
+              // console.log('opacityY->' + opacityY);
   
               const likeOpacity = opacityY >= 0 ? 0 : Math.abs(opacityY);
-              console.log('likeOpacity--' + likeOpacity);
+              // console.log('likeOpacity--' + likeOpacity);
   
               const superlikeOpacity = c <= 0 ? 0 : c / 100;
-              console.log('superlikeOpacity-' + superlikeOpacity);
+              // console.log('superlikeOpacity-' + superlikeOpacity);
   
               t.css('opacity', likeOpacity);
               a.css('opacity', likeOpacity);
@@ -145,6 +169,8 @@ const AuthorPost = () => {
         }
       });
   };
+
+ 
   
     useEffect(() => {
       
@@ -153,6 +179,7 @@ const AuthorPost = () => {
 
       lhh();
       $('.dz-sp-like').on('click', function () {
+        
         const e = $(this).parents('.dzSwipe_card');
         const t = e.find('.dzSwipe_card__option.dzSuperlike');
         t.css('opacity', '1');
@@ -164,15 +191,19 @@ const AuthorPost = () => {
           }, 500);
         });
       });
+     
     }, []); // The empty dependency array ensures that the effect runs once, similar to componentDidMount
     useEffect(() => {
       const fetchData = async () => {
         try {
           const response = await axios.post('/get-posts',{
-            author_id:postid
+            author_id:postid,
+           
           }
+          
             
           );
+          console.log("ascasc");
          
           
           console.log(response.data)
@@ -279,9 +310,10 @@ const AuthorPost = () => {
                         </div>
                         
                         <div className="dzSwipe_card__drag"></div>
+                       
+       
                       </div>
-                      
-                      
+                     
 
 
 											);}));})}

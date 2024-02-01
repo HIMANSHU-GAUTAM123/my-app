@@ -41,6 +41,19 @@ const Profile = () => {
 		fetchData();
 	  },[]);
 
+	  const handleClick1=((topic,categoryId)=>{
+		navigate(`${process.env.PUBLIC_URL}/category/${topic.toLowerCase()}-quotes/${categoryId}`);
+
+	  })
+	  const handleClick2=((topic,categoryId)=>{
+		navigate(`${process.env.PUBLIC_URL}/author/${topic.toLowerCase()}-quotes/${categoryId}`);
+
+	  })
+	  const handleClick3=((topic,categoryId)=>{
+		navigate(`${process.env.PUBLIC_URL}/tag/${topic.toLowerCase()}-quotes/${categoryId}`);
+
+	  })
+
   return !detail?(<Loader/>): (
 	detail &&
     <div >
@@ -89,7 +102,7 @@ const Profile = () => {
 													<img src={e.image_url} alt=""/>
 										</div>
 										<div className="dz-content">
-											<div className="left-content">
+											<div className="left-content" onClick={()=>{handleClick1(e.category_name,e.category_id)}}>
 											<span class="badge badge-primary mb-2">{e.category_name}</span>
 											
 												{/* <p className="mb-0"><i className="icon feather icon-map-pin"></i> 5 miles away</p> */}
@@ -111,19 +124,19 @@ const Profile = () => {
 											<h6 className="title">Tags</h6>
 											<ul className="dz-tag-list">
 												<li> 
-													<div className="dz-tag">
+													<div className="dz-tag" onClick={()=>{handleClick1(e.category_name,e.category_id)}}>
 														<i className=""></i>
 														<span>{e.category_name}</span>
 													</div>
 												</li>
 										<li> 
-											<div className="dz-tag">
+											<div className="dz-tag" onClick={()=>{handleClick2(e.author_name,e.author_id)}}>
 												<i className=""></i>
 												<span>{e.author_name}</span>
 											</div>
 										</li>
 										<li> 
-											<div className="dz-tag">
+											<div className="dz-tag" onClick={()=>{handleClick3(e.badge_name,e.badge_id)}}>
 												<i className=""></i>
 												<span>{e.badge_name}</span>
 											</div>

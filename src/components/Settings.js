@@ -26,7 +26,7 @@ const Settings = () => {
 
 			<ul class="nav navbar-nav">	
 				<li>
-					<Link to="/" class="nav-link active" >
+					<Link to={`${process.env.PUBLIC_URL}/quotes-collection`} class="nav-link active" >
 						<span class="dz-icon">
 							<i class="icon feather icon-home"></i>
 						</span>
@@ -35,11 +35,27 @@ const Settings = () => {
 				</li>
 				
 				<li>
-					<Link to={"/quotes-collection/categories"} class="nav-link" >
+					<Link to={`${process.env.PUBLIC_URL}/quotes-collection/categories`} class="nav-link" >
 						<span class="dz-icon">
-							<i class="icon feather icon-grid"></i>
+							<i class="fa-solid fa-icons"></i>
 						</span>
 						<span>Categories</span>
+					</Link>
+				</li>
+				<li>
+					<Link to={`${process.env.PUBLIC_URL}/quotes-collection/authors`} class="nav-link" >
+						<span class="dz-icon">
+							<i className="fa-solid fa-user"></i>
+						</span>
+						<span>Author</span>
+					</Link>
+				</li>
+				<li>
+					<Link to={`${process.env.PUBLIC_URL}/quotes-collection/tags`} class="nav-link" >
+						<span class="dz-icon">
+							<i class="fa-solid fa-fire"></i>
+						</span>
+						<span>Tags</span>
 					</Link>
 				</li>
 				</ul>
