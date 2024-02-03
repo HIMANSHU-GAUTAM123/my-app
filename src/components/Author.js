@@ -58,9 +58,9 @@ const Author = () => {
 	
 
 	
-	
+	const sanitizedTopic = topic.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');
 
-	navigate(`${process.env.PUBLIC_URL}/author/${topic.toLowerCase()}-quotes/${categoryId}`);
+	navigate(`${process.env.PUBLIC_URL}/author/${sanitizedTopic}-quotes/${categoryId}`);
 	
   };
 	  

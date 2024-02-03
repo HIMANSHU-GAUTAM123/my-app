@@ -221,7 +221,9 @@ const AuthorPost = () => {
     },[]);
 
     const handleImageClick = async(categoryId,topic,topic2) => {
-      navigate(`${process.env.PUBLIC_URL}/quotes/${topic.toLowerCase()}/${topic2}/${categoryId}`);
+      const sanitizedTopic = topic.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');
+      const sanitizedTopic2 = topic2.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');
+      navigate(`${process.env.PUBLIC_URL}/quotes/${sanitizedTopic}/${sanitizedTopic2}/${categoryId}`);
       
       };
 

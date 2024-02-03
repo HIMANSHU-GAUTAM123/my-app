@@ -42,15 +42,18 @@ const Profile = () => {
 	  },[]);
 
 	  const handleClick1=((topic,categoryId)=>{
-		navigate(`${process.env.PUBLIC_URL}/category/${topic.toLowerCase()}-quotes/${categoryId}`);
+		const sanitizedTopic = topic.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');
+		navigate(`${process.env.PUBLIC_URL}/category/${sanitizedTopic}-quotes/${categoryId}`);
 
 	  })
 	  const handleClick2=((topic,categoryId)=>{
-		navigate(`${process.env.PUBLIC_URL}/author/${topic.toLowerCase()}-quotes/${categoryId}`);
+		const sanitizedTopic = topic.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');
+		navigate(`${process.env.PUBLIC_URL}/author/${sanitizedTopic}-quotes/${categoryId}`);
 
 	  })
 	  const handleClick3=((topic,categoryId)=>{
-		navigate(`${process.env.PUBLIC_URL}/tag/${topic.toLowerCase()}-quotes/${categoryId}`);
+		const sanitizedTopic = topic.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');
+		navigate(`${process.env.PUBLIC_URL}/tag/${sanitizedTopic}-quotes/${categoryId}`);
 
 	  })
 

@@ -49,9 +49,8 @@ const Categories = () => {
 	const handleImageClick = async(categoryId,topic) => {
 		
 	
-		
-
-		navigate(`${process.env.PUBLIC_URL}/category/${topic.toLowerCase()}-quotes/${categoryId}`);
+		const sanitizedTopic = topic.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');
+		navigate(`${process.env.PUBLIC_URL}/category/${sanitizedTopic}-quotes/${categoryId}`);
 		
 	  };
 	  useEffect(()=>{
