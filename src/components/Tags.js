@@ -55,9 +55,9 @@ const Tags = () => {
   const handleImageClick = async(categoryId,topic) => {
 		
 	
-	
+	const sanitizedTopic = topic.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');
 
-	navigate(`${process.env.PUBLIC_URL}/tag/${topic.toLowerCase()}/${categoryId}`);
+	navigate(`${process.env.PUBLIC_URL}/tag/${sanitizedTopic}/${categoryId}`);
 	
   };
 	  

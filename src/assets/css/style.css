@@ -1,9 +1,5 @@
 /* 	=========================
-	Template Name 	 : Dating Kit
-	Author			 : DexignZone
-	Version			 : 1.0
-	Author Portfolio : https://themeforest.net/user/dexignzone/portfolio
-	=========================
+	
 	
 	=========================
 	[Table of Contents]
@@ -3960,7 +3956,7 @@ textarea.form-control-lg {
     float: left;
     padding-right: var(--bs-breadcrumb-item-padding-x);
     color: var(--bs-breadcrumb-divider-color);
-    content: var(--bs-breadcrumb-divider, "https://datingkit.dexignzone.com/") /* rtl: var(--bs-breadcrumb-divider, "/") */; }
+    content: var(--bs-breadcrumb-divider, "https://9letters.com") /* rtl: var(--bs-breadcrumb-divider, "/") */; }
 
 .breadcrumb-item.active {
   color: var(--bs-breadcrumb-item-active-color); }
@@ -9557,7 +9553,7 @@ a {
   color: #071c35 !important; }
 
 .container {
-  max-width: 600px;
+  max-width: 440px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 15px;
