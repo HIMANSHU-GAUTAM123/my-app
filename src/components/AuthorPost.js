@@ -8,7 +8,7 @@ import axios from '../api/axios';
 import Loader from './Loader';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-import eart from '../assets/images/eart.jpg'
+
 
 const AuthorPost = () => {
   const [post, setPost] =useState(null);
