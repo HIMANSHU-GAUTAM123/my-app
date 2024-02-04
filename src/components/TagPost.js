@@ -12,6 +12,8 @@ import { useParams } from 'react-router-dom';
 const TagPost = () => {
   const [post, setPost] =useState(null);
   const [path, setPath] =useState(null);
+  const[call,setcall]=useState(0);
+  const lim=20;
   const navigate = useNavigate();
 
  
@@ -22,160 +24,183 @@ const TagPost = () => {
  
 
  
-    let lhh;let u;let dzCardSuperLike;
-  
-    let e, t, a, o = false,
-      s = 0,
-      i = $('.dzSwipe_card').length,
-      n = 80,
-      d = 0,
-      c = 0,
-      r = 0;
-  
-    u = () => {
-     return( ++s === i && (s = 0, $('.dzSwipe_card').removeClass('below')));
-    };
-  
-    lhh = () => {
+  let lhh;let dzCardSuperLike;
+  const u = () => {
+    if(++s===i){
+     s=0;
       
-      $(document).on('mousedown touchstart', '.dzSwipe_card:not(.inactive)', function (s) {
-        if (!o) {
-          e = $(this);
-          t = $('.dzSwipe_card__option.dzReject', e);
-          a = $('.dzSwipe_card__option.dzLike', e);
-          dzCardSuperLike = $('.dzSwipe_card__option.dzSuperlike', e);
+      setcall(call+1);
+    }
   
-          const i = s.pageX || s.originalEvent.touches[0].pageX;
-          const l = s.pageY || s.originalEvent.touches[0].pageY;
+  //  return( ++s === i && (s = 0, $('.dzSwipe_card').removeClass('below'),setcall(call+1))
+    
+   //);
+  }
+
+  let e, t, a, o = false,
+    s = 0,
+    i = $('.dzSwipe_card').length,
+   
+    n = 80,
+    d = 0,
+    c = 0,
+    r = 0;
+    //console.log(i);
+    
+
+ 
+
   
-          $(document).on('mousemove touchmove', function (s) {
-            const n = s.pageX || s.originalEvent.touches[0].pageX;
-            const u = s.pageY || s.originalEvent.touches[0].pageY;
-            c = l - u;
-            ((d = n - i) || c) && (function () {
-              o = true;
-              r = d / 10;
-              const degY = c / 10;
-              let shouldTranslateY = false;
-  
-              if (Math.abs(c) > Math.abs(d)) {
-                shouldTranslateY = true;
-              }
-  
-              if (shouldTranslateY) {
-                e.css('transform', 'translateY(-' + c + 'px)');
-              } else {
-                e.css('transform', 'translateX(' + d + 'px) rotate(' + r + 'deg)');
-              }
-  
-              console.log('dzCard_moveY->' + c);
-  
-              const opacityY = d / 100;
-              console.log('opacityY->' + opacityY);
-  
-              const likeOpacity = opacityY >= 0 ? 0 : Math.abs(opacityY);
-              console.log('likeOpacity--' + likeOpacity);
-  
-              const superlikeOpacity = c <= 0 ? 0 : c / 100;
-              console.log('superlikeOpacity-' + superlikeOpacity);
-  
-              t.css('opacity', likeOpacity);
-              a.css('opacity', likeOpacity);
-  
-              if (shouldTranslateY) {
-                dzCardSuperLike.css('opacity', superlikeOpacity);
-              }
-            })();
-          });
-  
-          $(document).on('mouseup touchend', function () {
-            $(document).off('mousemove touchmove mouseup touchend');
-  
-            if (Math.abs(d) < Math.abs(c)) {
-              if (c >= n) {
-                e.addClass('to-upside');
-              } else if (c <= -80) {
-                e.addClass('to-downside');
-              }
-  
-              if (Math.abs(c) >= n) {
-                e.addClass('inactive');
-                setTimeout(() => {
-                  e.addClass('below').removeClass('inactive to-upside to-downside');
-                  u();
-                }, 300);
-              }
-  
-              if (Math.abs(c) < n) {
-                e.addClass('reset');
-              }
-  
+    
+    $(document).on('mousedown touchstart', '.dzSwipe_card:not(.inactive)', function (s) {
+      
+      if (!o) {
+        e = $(this);
+        t = $('.dzSwipe_card__option.dzReject', e);
+        a = $('.dzSwipe_card__option.dzLike', e);
+        dzCardSuperLike = $('.dzSwipe_card__option.dzSuperlike', e);
+
+        const i = s.pageX || s.originalEvent.touches[0].pageX;
+        const l = s.pageY || s.originalEvent.touches[0].pageY;
+
+        $(document).on('mousemove touchmove', function (s) {
+          const n = s.pageX || s.originalEvent.touches[0].pageX;
+          const u = s.pageY || s.originalEvent.touches[0].pageY;
+          c = l - u;
+          ((d = n - i) || c) && (function () {
+            o = true;
+            r = d / 10;
+            const degY = c / 10;
+            let shouldTranslateY = false;
+
+            if (Math.abs(c) > Math.abs(d)) {
+              shouldTranslateY = true;
+            }
+
+            if (shouldTranslateY) {
+              e.css('transform', 'translateY(-' + c + 'px)');
+            } else {
+              e.css('transform', 'translateX(' + d + 'px) rotate(' + r + 'deg)');
+            }
+
+            // console.log('dzCard_moveY->' + c);
+
+            const opacityY = d / 100;
+            // console.log('opacityY->' + opacityY);
+
+            const likeOpacity = opacityY >= 0 ? 0 : Math.abs(opacityY);
+            // console.log('likeOpacity--' + likeOpacity);
+
+            const superlikeOpacity = c <= 0 ? 0 : c / 100;
+            // console.log('superlikeOpacity-' + superlikeOpacity);
+
+            t.css('opacity', likeOpacity);
+            a.css('opacity', likeOpacity);
+
+            if (shouldTranslateY) {
+              dzCardSuperLike.css('opacity', superlikeOpacity);
+            }
+          })();
+        });
+
+        $(document).on('mouseup touchend', function () {
+          $(document).off('mousemove touchmove mouseup touchend');
+
+          if (Math.abs(d) < Math.abs(c)) {
+            if (c >= n) {
+              e.addClass('to-upside');
+            } else if (c <= -80) {
+              e.addClass('to-downside');
+            }
+
+            if (Math.abs(c) >= n) {
+              e.addClass('inactive');
               setTimeout(() => {
-                e.attr('style', '').removeClass('reset').find('.dzSwipe_card__option').attr('style', '');
-                c = 0;
-                o = false;
-              }, 300);
-            } else if (Math.abs(d) > 0) {
-              if (d >= n) {
-                e.addClass('to-right');
-              } else if (d <= -80) {
-                e.addClass('to-left');
-              }
-  
-              if (Math.abs(d) >= n) {
-                e.addClass('inactive');
-                setTimeout(() => {
-                  e.addClass('below').removeClass('inactive to-left to-right');
-                  u();
-                }, 300);
-              }
-  
-              if (Math.abs(d) < n) {
-                e.addClass('reset');
-              }
-  
-              setTimeout(() => {
-                e.attr('style', '').removeClass('reset').find('.dzSwipe_card__option').attr('style', '');
-                d = 0;
-                o = false;
+                e.addClass('below').removeClass('inactive to-upside to-downside');
+                u();
               }, 300);
             }
-          });
-        }
-      });
-  };
-  
-    useEffect(() => {
-      
 
+            if (Math.abs(c) < n) {
+              e.addClass('reset');
+            }
 
+            setTimeout(() => {
+              e.attr('style', '').removeClass('reset').find('.dzSwipe_card__option').attr('style', '');
+              c = 0;
+              o = false;
+            }, 300);
+          } else if (Math.abs(d) > 0) {
+            if (d >= n) {
+              e.addClass('to-right');
+            } else if (d <= -80) {
+              e.addClass('to-left');
+            }
 
-      lhh();
-      $('.dz-sp-like').on('click', function () {
-        const e = $(this).parents('.dzSwipe_card');
-        const t = e.find('.dzSwipe_card__option.dzSuperlike');
-        t.css('opacity', '1');
-        e.slideUp(300, () => {
-          u();
-          setTimeout(() => {
-            e.addClass('below').css('display', '');
-            t.css('opacity', '');
-          }, 500);
+            if (Math.abs(d) >= n) {
+              e.addClass('inactive');
+              setTimeout(() => {
+                e.addClass('below').removeClass('inactive to-left to-right');
+                u();
+              }, 300);
+            }
+
+            if (Math.abs(d) < n) {
+              e.addClass('reset');
+            }
+
+            setTimeout(() => {
+              e.attr('style', '').removeClass('reset').find('.dzSwipe_card__option').attr('style', '');
+              d = 0;
+              o = false;
+            }, 300);
+          }
         });
+      }
+    })
+
+
+
+  
+    
+
+
+
+    // lhh();
+    $('.dz-sp-like').on('click', function () {
+      
+      const e = $(this).parents('.dzSwipe_card');
+      const t = e.find('.dzSwipe_card__option.dzSuperlike');
+      t.css('opacity', '1');
+      e.slideUp(300, () => {
+        u();
+        setTimeout(() => {
+          e.addClass('below').css('display', '');
+          t.css('opacity', '');
+        }, 500);
       });
-    }, []); // The empty dependency array ensures that the effect runs once, similar to componentDidMount
+    });
+
     useEffect(() => {
       const fetchData = async () => {
         try {
           const response = await axios.post('/get-posts',{
-            badge_id:postid
+            badge_id:postid,
+            page_index:call,
+					  limit:lim
           }
          
             
           );
-          console.log(response.data)
-
-          setPost(response);
+          if (response.data && Object.keys(response.data).length > 2) {
+            console.log(response.data);
+            console.log(postid);
+            setPost(response);
+          } else {
+            console.log("Empty response");
+            setPost(null);
+            setcall(0);
+          }
         } catch (error) {
           console.error('Error fetching category details:', error);
         }
@@ -183,7 +208,7 @@ const TagPost = () => {
   
       // Fetch data when the component mounts
       fetchData();
-    },[]);
+    },[call]);
     const handleImageClick = async(categoryId,topic,topic2) => {
       const sanitizedTopic = topic.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');
       const sanitizedTopic2 = topic2.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');

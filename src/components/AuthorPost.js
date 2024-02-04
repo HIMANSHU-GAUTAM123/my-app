@@ -8,13 +8,14 @@ import axios from '../api/axios';
 import Loader from './Loader';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import eart from '../assets/images/eart.jpg'
 
 const AuthorPost = () => {
   const [post, setPost] =useState(null);
   const [path, setPath] =useState(null);
-  // const [swipe,setswipe]=useState(1);
-  // const[call,setcall]=useState(0);
-  // const lim=3;
+ 
+   const[call,setcall]=useState(0);
+   const lim=20;
   
   
   const navigate = useNavigate();
@@ -25,42 +26,40 @@ const AuthorPost = () => {
 
 
 
-  // const handleSwipe = () => {
-  //   console.log(10000);
-  //   setswipe((prevSwipe) => {
-  //     if (prevSwipe >= lim) {
-  //       // If the user has swiped enough, make a new API call
-  //       setcall((prevCall) => prevCall + 1);
-  //       // Reset swipe count
-  //       return 1;
-  //     } else {
-  //       // Increment swipe count
-  //       return prevSwipe + 1;
-  //     }
-
-  //   });
-  // };
+ 
 
   
 
  
 
  
-    let lhh;let u;let dzCardSuperLike;
+    let lhh;let dzCardSuperLike;
+    const u = () => {
+      if(++s===i){
+        s=0;
+        
+        setcall(call+1);
+      }
+    
+    //  return( ++s === i && (s = 0, $('.dzSwipe_card').removeClass('below'),setcall(call+1))
+      
+     //);
+    }
   
     let e, t, a, o = false,
       s = 0,
       i = $('.dzSwipe_card').length,
+     
       n = 80,
       d = 0,
       c = 0,
       r = 0;
+      //console.log(i);
+      
   
-    u = () => {
-     return( ++s === i && (s = 0, $('.dzSwipe_card').removeClass('below')));
-    };
+   
   
-    lhh = () => {
+    
       
       $(document).on('mousedown touchstart', '.dzSwipe_card:not(.inactive)', function (s) {
         
@@ -167,17 +166,16 @@ const AuthorPost = () => {
             }
           });
         }
-      });
-  };
+      })
 
  
   
-    useEffect(() => {
+    
       
 
 
 
-      lhh();
+      // lhh();
       $('.dz-sp-like').on('click', function () {
         
         const e = $(this).parents('.dzSwipe_card');
@@ -191,34 +189,44 @@ const AuthorPost = () => {
           }, 500);
         });
       });
-     
-    }, []); // The empty dependency array ensures that the effect runs once, similar to componentDidMount
+
+
+    
     useEffect(() => {
       const fetchData = async () => {
         try {
           const response = await axios.post('/get-posts',{
             author_id:postid,
+            page_index:call,
+					  limit:lim
            
           }
           
             
           );
-          console.log("ascasc");
-         
-          
-          console.log(response.data)
-          console.log(postid)
-
+         // console.log("ascasc");
+         if (response.data && Object.keys(response.data).length > 2) {
+          console.log(Object.keys(response.data).length);
+          console.log(postid);
           setPost(response);
+        } else {
+          console.log("Empty response");
+          setPost(null);
+          setcall(0);
+        }
+         
          
         } catch (error) {
+          console.log("hi");
+          setcall(0);
           console.error('Error fetching category details:', error);
+         
         }
       };
   
       // Fetch data when the component mounts
       fetchData();
-    },[]);
+    },[call]);
 
     const handleImageClick = async(categoryId,topic,topic2) => {
       const sanitizedTopic = topic.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');
@@ -313,12 +321,34 @@ const AuthorPost = () => {
                         
                         <div className="dzSwipe_card__drag"></div>
                        
+                       
        
                       </div>
+                      
+
                      
 
 
-											);}));})}
+											);}));
+
+
+                      
+
+
+                        
+                      
+                    })}
+
+
+                       
+
+
+                       
+
+
+
+
+                    
 
 
 
