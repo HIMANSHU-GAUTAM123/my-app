@@ -37,7 +37,7 @@ const AuthorPost = () => {
     const u = () => {
       if(++s===i){
         s=0;
-        
+        $('.dzSwipe_card').removeClass('below')
         setcall(call+1);
       }
     
