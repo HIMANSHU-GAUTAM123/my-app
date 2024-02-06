@@ -26,6 +26,7 @@
     "react-redux": "^9.0.4",
     "react-router-dom": "^6.21.1",
     "react-scripts": "5.0.1",
+    "react-swipeable": "^7.0.1",
     "react-web-share": "^2.0.2",
     "resolve-url-loader": "^5.0.0",
     "swiper": "^11.0.5",
