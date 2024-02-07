@@ -1,198 +1,32 @@
 import '../assets/css/style.css';
-import $ from 'jquery';
 import React from 'react';
 import {useEffect,useState} from 'react';
-import {Link} from 'react-router-dom';
 import axios from '../api/axios';
-
+import { useSwipeable } from 'react-swipeable';
 import Loader from './Loader';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { RWebShare } from "react-web-share";
 
 
 const AuthorPost = () => {
   const [post, setPost] =useState(null);
-  const [path, setPath] =useState(null);
- 
+
+  const [currentIndex, setCurrentIndex] = useState(0);
    const[call,setcall]=useState(0);
+ 
+   const [imageCount, setImageCount] = useState(0);
+
    const lim=20;
+   
   
   
   const navigate = useNavigate();
 
   
   const { postid } = useParams();
-
-
-
-
- 
-
-  
-
- 
-
- 
-    let lhh;let dzCardSuperLike;
-    const u = () => {
-      if(++s===i){
-        s=0;
-        
-        setcall(call+1);
-      }
     
-    //  return( ++s === i && (s = 0, $('.dzSwipe_card').removeClass('below'),setcall(call+1))
-      
-     //);
-    }
-  
-    let e, t, a, o = false,
-      s = 0,
-      i = $('.dzSwipe_card').length,
-     
-      n = 80,
-      d = 0,
-      c = 0,
-      r = 0;
-      //console.log(i);
-      
-  
-   
-  
-    
-      
-      $(document).on('mousedown touchstart', '.dzSwipe_card:not(.inactive)', function (s) {
-        
-        if (!o) {
-          e = $(this);
-          t = $('.dzSwipe_card__option.dzReject', e);
-          a = $('.dzSwipe_card__option.dzLike', e);
-          dzCardSuperLike = $('.dzSwipe_card__option.dzSuperlike', e);
-  
-          const i = s.pageX || s.originalEvent.touches[0].pageX;
-          const l = s.pageY || s.originalEvent.touches[0].pageY;
-  
-          $(document).on('mousemove touchmove', function (s) {
-            const n = s.pageX || s.originalEvent.touches[0].pageX;
-            const u = s.pageY || s.originalEvent.touches[0].pageY;
-            c = l - u;
-            ((d = n - i) || c) && (function () {
-              o = true;
-              r = d / 10;
-              const degY = c / 10;
-              let shouldTranslateY = false;
-  
-              if (Math.abs(c) > Math.abs(d)) {
-                shouldTranslateY = true;
-              }
-  
-              if (shouldTranslateY) {
-                e.css('transform', 'translateY(-' + c + 'px)');
-              } else {
-                e.css('transform', 'translateX(' + d + 'px) rotate(' + r + 'deg)');
-              }
-  
-              // console.log('dzCard_moveY->' + c);
-  
-              const opacityY = d / 100;
-              // console.log('opacityY->' + opacityY);
-  
-              const likeOpacity = opacityY >= 0 ? 0 : Math.abs(opacityY);
-              // console.log('likeOpacity--' + likeOpacity);
-  
-              const superlikeOpacity = c <= 0 ? 0 : c / 100;
-              // console.log('superlikeOpacity-' + superlikeOpacity);
-  
-              t.css('opacity', likeOpacity);
-              a.css('opacity', likeOpacity);
-  
-              if (shouldTranslateY) {
-                dzCardSuperLike.css('opacity', superlikeOpacity);
-              }
-            })();
-          });
-  
-          $(document).on('mouseup touchend', function () {
-            $(document).off('mousemove touchmove mouseup touchend');
-  
-            if (Math.abs(d) < Math.abs(c)) {
-              if (c >= n) {
-                e.addClass('to-upside');
-              } else if (c <= -80) {
-                e.addClass('to-downside');
-              }
-  
-              if (Math.abs(c) >= n) {
-                e.addClass('inactive');
-                setTimeout(() => {
-                  e.addClass('below').removeClass('inactive to-upside to-downside');
-                  u();
-                }, 300);
-              }
-  
-              if (Math.abs(c) < n) {
-                e.addClass('reset');
-              }
-  
-              setTimeout(() => {
-                e.attr('style', '').removeClass('reset').find('.dzSwipe_card__option').attr('style', '');
-                c = 0;
-                o = false;
-              }, 300);
-            } else if (Math.abs(d) > 0) {
-              if (d >= n) {
-                e.addClass('to-right');
-              } else if (d <= -80) {
-                e.addClass('to-left');
-              }
-  
-              if (Math.abs(d) >= n) {
-                e.addClass('inactive');
-                setTimeout(() => {
-                  e.addClass('below').removeClass('inactive to-left to-right');
-                  u();
-                }, 300);
-              }
-  
-              if (Math.abs(d) < n) {
-                e.addClass('reset');
-              }
-  
-              setTimeout(() => {
-                e.attr('style', '').removeClass('reset').find('.dzSwipe_card__option').attr('style', '');
-                d = 0;
-                o = false;
-              }, 300);
-            }
-          });
-        }
-      })
-
- 
-  
-    
-      
-
-
-
-      // lhh();
-      $('.dz-sp-like').on('click', function () {
-        
-        const e = $(this).parents('.dzSwipe_card');
-        const t = e.find('.dzSwipe_card__option.dzSuperlike');
-        t.css('opacity', '1');
-        e.slideUp(300, () => {
-          u();
-          setTimeout(() => {
-            e.addClass('below').css('display', '');
-            t.css('opacity', '');
-          }, 500);
-        });
-      });
-
-
-    
-    useEffect(() => {
+  useEffect(() => {
       const fetchData = async () => {
         try {
           const response = await axios.post('/get-posts',{
@@ -206,13 +40,28 @@ const AuthorPost = () => {
           );
          // console.log("ascasc");
          if (response.data && Object.keys(response.data).length > 2) {
-          console.log(Object.keys(response.data).length);
+          console.log(response.data);
+          
           console.log(postid);
+          
+          
+          
           setPost(response);
+          let count = 0;
+          Object.values(response.data).forEach(item => {
+            Object.values(item).forEach(e => {
+              if (e["image_url"]) {
+                count++;
+              }
+            });
+          });
+          setImageCount(count);
+
         } else {
           console.log("Empty response");
           setPost(null);
           setcall(0);
+          
         }
          
          
@@ -234,6 +83,44 @@ const AuthorPost = () => {
       navigate(`${process.env.PUBLIC_URL}/quotes/${sanitizedTopic}/${sanitizedTopic2}/${categoryId}`);
       
       };
+
+      const showPreviousImage = () => {
+        if (currentIndex > 0) {
+          setCurrentIndex(currentIndex - 1);
+          console.log("hi")
+        }
+        else if(currentIndex==0){
+           if(call>0){
+            setPost(null);
+            setCurrentIndex(lim-1);
+            setcall(call-1);
+          }
+        }
+      };
+    
+      const showNextImage = () => {
+        if (currentIndex < imageCount-1) {
+          setCurrentIndex(currentIndex + 1);
+          console.log("bye")
+        }
+        else if(currentIndex===imageCount-1){
+          console.log("fucj")
+          setCurrentIndex(0);
+          setPost(null);
+          setcall(call+1);
+        }
+        
+      };
+    
+     
+      const handlers = useSwipeable({
+        onSwipedLeft: showNextImage,
+        onSwipedRight: showPreviousImage,
+        trackMouse: true,
+        preventDefaultTouchmoveEvent: true
+        
+        
+      });
 
   
   return !post?(<Loader/>): (
@@ -274,19 +161,19 @@ const AuthorPost = () => {
 
 
       {/* <!-- Page Content Start --> */}
-    <div className="page-content space-top p-b65" >
-      <div className="container fixed-full-area">
+    <div  className="page-content space-top p-b65" {...handlers} >
+      <div className="container fixed-full-area" >
         <div className="dzSwipe_card-cont dz-gallery-slider">
           
           
 
-
-        {post && Object.values(post.data).map(item =>{
+        
+        {post && Object.values(post.data).map((item) =>{
 
 						return(
-									Object.values(item).map(e=>{
+									Object.values(item).map((e,index)=>{
 									return(
-												e["image_url"] &&
+												e["image_url"] && index===currentIndex &&
 
 
       									<div className="dzSwipe_card" onClick={()=> handleImageClick(e["id"],e["author_name"],e["url_title"])}>
@@ -309,7 +196,16 @@ const AuthorPost = () => {
 							                                </ul>
                            
                           </div>
-                          <div  className="dz-icon dz-sp-like"><i class="flaticon flaticon-star-1"></i></div>
+                          <div  className="dz-icon dz-sp-like"  ><RWebShare 
+					data={{
+					  text: `${e.title}`,
+					  url: `${window.location.href}`,
+					  title: `Famous quote by ${e.author_name}`,
+					}}
+					onClick={() => console.log("shared successfully!")}
+				  >
+					<i className="fa-solid fa-share"></i>
+				  </RWebShare></div>
                           
                         </div>
                         <div className="dzSwipe_card__option dzReject">
@@ -357,7 +253,7 @@ const AuthorPost = () => {
           
           
           
-         
+        
         </div>
       </div>
     </div>

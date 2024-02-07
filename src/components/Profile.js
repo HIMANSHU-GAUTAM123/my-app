@@ -1,15 +1,12 @@
 import React from 'react';
 import '../assets/css/style.css';
-import $ from 'jquery';
-import jQuery from 'jquery';
-import Swiper from 'swiper/bundle';
-import 'swiper/css/bundle';
-import {useEffect,useState,useRef} from 'react';
-import {Link} from 'react-router-dom';
+
+
+import {useEffect,useState} from 'react';
+
 import axios from '../api/axios';
 import Loader from './Loader';
-import Pagination from '@mui/material/Pagination';
-import Stack from '@mui/material/Stack';
+
 
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';

@@ -19524,7 +19524,10 @@ body.theme-dark.body-bg2 {
     margin: 30px auto 0;
     position: relative;
     display: flex;
+
     justify-content: center; }
+
+    
 
 .load-circle {
   display: inline-block;
