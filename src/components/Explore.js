@@ -229,7 +229,7 @@ const Explore = () => {
 
 
 		
-		const sanitizedTopic = topic.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');
+		const sanitizedTopic = topic.toLowerCase().replace(/[^a-zA-Z0-9\s\u0900-\u097F-]/g, '').replace(/\s+/g, '-');
 		 navigate(`${process.env.PUBLIC_URL}/category/${sanitizedTopic}-quotes/${categoryId}`);
 		
 	  };
@@ -239,13 +239,13 @@ const Explore = () => {
 
 
 	   
-		const sanitizedTopic = topic.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');
+		const sanitizedTopic = topic.toLowerCase().replace(/[^a-zA-Z0-9\s\u0900-\u097F-]/g, '').replace(/\s+/g, '-');
 		navigate(`${process.env.PUBLIC_URL}/author/${sanitizedTopic}-quotes/${categoryId}`);
 	   
 	 };
 	 const handleImageClick2 = async(categoryId,topic) => {
 		
-		const sanitizedTopic = topic.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');
+		const sanitizedTopic = topic.toLowerCase().replace(/[^a-zA-Z0-9\s\u0900-\u097F-]/g, '').replace(/\s+/g, '-');
 		navigate(`${process.env.PUBLIC_URL}/tag/${sanitizedTopic}/${categoryId}`);
 	   
 	 };
