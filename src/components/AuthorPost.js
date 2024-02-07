@@ -199,7 +199,7 @@ const AuthorPost = () => {
                           <div  className="dz-icon dz-sp-like"  ><RWebShare 
 					data={{
 					  text: `${e.title}`,
-					  url: `${window.location.href}`,
+					  url: `${process.env.PUBLIC_URL}/quotes/${e["author_name"].toLowerCase().replace(/[^a-zA-Z0-9\s\u0900-\u097F-]/g, '').replace(/\s+/g, '-')}/${e["url_title"].toLowerCase().replace(/[^a-zA-Z0-9\s\u0900-\u097F-]/g, '').replace(/\s+/g, '-')}/${e["id"]}`,
 					  title: `Famous quote by ${e.author_name}`,
 					}}
 					onClick={() => console.log("shared successfully!")}
