@@ -1,5 +1,5 @@
 import axios from 'axios';
-const base_url='https://api.9ethics.com/api';
+const base_url='https://api.9letters.com/api';
 
 export default axios.create({
     method:'post',
