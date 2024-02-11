@@ -168,7 +168,9 @@ const Swiper = () => {
                         <div className="dz-media">
                         <img src={e["image_url"]} alt=""  />
                         </div>
+                        <div class="dz-icon ms-auto me-0"><i class="flaticon flaticon-star-1"></i></div>
                         <div className="dz-content">
+                      
                           <div className="left-content">
                           <span class="badge badge-primary mb-2">{e["category_name"]}</span>
                             <h4 className="title"></h4>
