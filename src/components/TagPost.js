@@ -66,8 +66,8 @@ const TagPost = () => {
       fetchData();
     },[call]);
     const handleImageClick = async(categoryId,topic,topic2) => {
-      const sanitizedTopic = topic.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');
-      const sanitizedTopic2 = topic2.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');
+      const sanitizedTopic = topic.toLowerCase().replace(/[^a-zA-Z0-9\s\u0900-\u097F-]/g, '').replace(/\s+/g, '-');
+      const sanitizedTopic2 = topic2.toLowerCase().replace(/[^a-zA-Z0-9\s\u0900-\u097F-]/g, '').replace(/\s+/g, '-');
       navigate(`${process.env.PUBLIC_URL}/quotes/${sanitizedTopic}/${sanitizedTopic2}/${categoryId}`);
       
       };
@@ -188,7 +188,7 @@ const TagPost = () => {
                           <div  className="dz-icon dz-sp-like"><RWebShare 
 					data={{
 					  text: `${e.title}`,
-					  url: `${window.location.href}`,
+					  url: `${process.env.PUBLIC_URL}/quotes/${e["badge_name"].toLowerCase().replace(/[^a-zA-Z0-9\s\u0900-\u097F-]/g, '').replace(/\s+/g, '-')}/${e["url_title"].toLowerCase().replace(/[^a-zA-Z0-9\s\u0900-\u097F-]/g, '').replace(/\s+/g, '-')}/${e["id"]}`,
 					  title: `Famous quote by ${e.author_name}`,
 					}}
 					onClick={() => console.log("shared successfully!")}

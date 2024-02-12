@@ -4,7 +4,7 @@
   "homepage": "m/",
   "start_url": "m/quotes-collection",
   "private": true,
-  "proxy": "https://api.9ethics.com/api",
+  "proxy": "https://api.9letters.com/api",
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",

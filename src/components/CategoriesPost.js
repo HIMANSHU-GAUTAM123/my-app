@@ -65,8 +65,8 @@ const Swiper = () => {
       fetchData();
     },[call]);
     const handleImageClick = async(categoryId,topic,topic2) => {
-      const sanitizedTopic = topic.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');
-      const sanitizedTopic2 = topic2.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');
+      const sanitizedTopic = topic.toLowerCase().replace(/[^a-zA-Z0-9\s\u0900-\u097F-]/g, '').replace(/\s+/g, '-');
+      const sanitizedTopic2 = topic2.toLowerCase().replace(/[^a-zA-Z0-9\s\u0900-\u097F-]/g, '').replace(/\s+/g, '-');
       navigate(`${process.env.PUBLIC_URL}/quotes/${sanitizedTopic}/${sanitizedTopic2}/${categoryId}`);
       
       };
@@ -168,7 +168,9 @@ const Swiper = () => {
                         <div className="dz-media">
                         <img src={e["image_url"]} alt=""  />
                         </div>
+                        <div class="dz-icon ms-auto me-0"><i class="flaticon flaticon-star-1"></i></div>
                         <div className="dz-content">
+                      
                           <div className="left-content">
                           <span class="badge badge-primary mb-2">{e["category_name"]}</span>
                             <h4 className="title"></h4>
@@ -187,7 +189,7 @@ const Swiper = () => {
                           <div  className="dz-icon dz-sp-like"><RWebShare 
 					data={{
 					  text: `${e.title}`,
-					  url: `${window.location.href}`,
+					  url: `${process.env.PUBLIC_URL}/quotes/${e["category_name"].toLowerCase().replace(/[^a-zA-Z0-9\s\u0900-\u097F-]/g, '').replace(/\s+/g, '-')}/${e["url_title"].toLowerCase().replace(/[^a-zA-Z0-9\s\u0900-\u097F-]/g, '').replace(/\s+/g, '-')}/${e["id"]}`,
 					  title: `Famous quote by ${e.author_name}`,
 					}}
 					onClick={() => console.log("shared successfully!")}

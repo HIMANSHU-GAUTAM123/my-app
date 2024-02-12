@@ -45,7 +45,7 @@ const Categories = () => {
 	const handleImageClick = async(categoryId,topic) => {
 		
 	
-		const sanitizedTopic = topic.toLowerCase().replace(/[^a-zA-Z0-9\s]/g, '').replace(/\s+/g, '-');
+		const sanitizedTopic = topic.toLowerCase().replace(/[^a-zA-Z0-9\s\u0900-\u097F-]/g, '').replace(/\s+/g, '-');
 		navigate(`${process.env.PUBLIC_URL}/category/${sanitizedTopic}-quotes/${categoryId}`);
 		
 	  };
