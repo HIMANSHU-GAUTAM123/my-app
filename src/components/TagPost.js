@@ -2,7 +2,7 @@ import '../assets/css/style.css';
 
 import React from 'react';
 import {useEffect,useState} from 'react';
-
+import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io'; 
 import axios from '../api/axios';
 import { useSwipeable } from 'react-swipeable';
 import Loader from './Loader';
@@ -12,7 +12,7 @@ import { RWebShare } from "react-web-share";
 
 const TagPost = () => {
   const [post, setPost] =useState(null);
-
+  const [showSwipeIndicator, setShowSwipeIndicator] = useState(true);
   const[call,setcall]=useState(0);
   const [imageCount, setImageCount] = useState(0);
   const lim=20;
@@ -23,7 +23,13 @@ const TagPost = () => {
 
   const { postid } = useParams();
 
+  const handleSwipe = (event) => {
+    if (event.type === 'touchstart') {
+      setShowSwipeIndicator(false);
+    }
+  };
 
+  window.addEventListener('touchstart', handleSwipe);
  
 
  
@@ -152,7 +158,9 @@ const TagPost = () => {
     <div className="page-content space-top p-b65" {...handlers} >
       <div className="container fixed-full-area">
         <div className="dzSwipe_card-cont dz-gallery-slider">
-          
+        <div className={`swipe-indicator ${showSwipeIndicator ? 'show' : ''}`}>
+      <IoIosArrowBack className="swipe-icon" />Swipe to navigate<IoIosArrowForward className="swipe-icon" /> 
+    </div>
           
 
 

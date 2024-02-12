@@ -8,12 +8,12 @@ import { useSwipeable } from 'react-swipeable';
 import Loader from './Loader';
 import { useNavigate } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
-
+import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io'; 
 import { RWebShare } from "react-web-share";
 
 const Swiper = () => {
   const [post, setPost] =useState(null);
-  
+  const [showSwipeIndicator, setShowSwipeIndicator] = useState(true);
   const[call,setcall]=useState(0);
   const [imageCount, setImageCount] = useState(0);
   const lim=20;
@@ -22,7 +22,13 @@ const Swiper = () => {
 
 
   const { postid } = useParams();
+  const handleSwipe = (event) => {
+    if (event.type === 'touchstart') {
+      setShowSwipeIndicator(false);
+    }
+  };
 
+  window.addEventListener('touchstart', handleSwipe);
   
  
 
@@ -151,6 +157,9 @@ const Swiper = () => {
     <div className="page-content space-top p-b65" {...handlers}>
       <div className="container fixed-full-area">
         <div className="dzSwipe_card-cont dz-gallery-slider">
+        <div className={`swipe-indicator ${showSwipeIndicator ? 'show' : ''}`}>
+      <IoIosArrowBack className="swipe-icon" />Swipe to navigate<IoIosArrowForward className="swipe-icon" /> 
+    </div>
           
           
 

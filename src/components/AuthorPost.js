@@ -7,6 +7,7 @@ import Loader from './Loader';
 import { useParams } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { RWebShare } from "react-web-share";
+import { IoIosArrowForward, IoIosArrowBack } from 'react-icons/io'; 
 
 
 const AuthorPost = () => {
@@ -14,7 +15,7 @@ const AuthorPost = () => {
 
   const [currentIndex, setCurrentIndex] = useState(0);
    const[call,setcall]=useState(0);
- 
+   const [showSwipeIndicator, setShowSwipeIndicator] = useState(true);
    const [imageCount, setImageCount] = useState(0);
 
    const lim=20;
@@ -25,6 +26,14 @@ const AuthorPost = () => {
 
   
   const { postid } = useParams();
+  const handleSwipe = (event) => {
+    if (event.type === 'touchstart') {
+      setShowSwipeIndicator(false);
+    }
+  };
+
+  window.addEventListener('touchstart', handleSwipe);
+  
     
   useEffect(() => {
       const fetchData = async () => {
@@ -162,10 +171,15 @@ const AuthorPost = () => {
 
       {/* <!-- Page Content Start --> */}
     <div  className="page-content space-top p-b65" {...handlers} >
+      
       <div className="container fixed-full-area" >
+        
         <div className="dzSwipe_card-cont dz-gallery-slider">
-          
-          
+        <div className={`swipe-indicator ${showSwipeIndicator ? 'show' : ''}`}>
+      <IoIosArrowBack className="swipe-icon" />Swipe to navigate<IoIosArrowForward className="swipe-icon" /> 
+    </div>
+
+        
 
         
         {post && Object.values(post.data).map((item) =>{
@@ -177,8 +191,10 @@ const AuthorPost = () => {
 
 
       									<div className="dzSwipe_card" onClick={()=> handleImageClick(e["id"],e["author_name"],e["url_title"])}>
+                          
                         <div className="dz-media">
                         <img src={e["image_url"]} alt=""  />
+                        
                         </div>
                         <div className="dz-content">
                           <div className="left-content">
