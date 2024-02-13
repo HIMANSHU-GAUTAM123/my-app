@@ -157,10 +157,7 @@ const Swiper = () => {
     <div className="page-content space-top p-b65" {...handlers}>
       <div className="container fixed-full-area">
         <div className="dzSwipe_card-cont dz-gallery-slider">
-        <div className={`swipe-indicator ${showSwipeIndicator ? 'show' : ''}`}>
-      <IoIosArrowBack className="swipe-icon" />Swipe to navigate<IoIosArrowForward className="swipe-icon" /> 
-    </div>
-          
+        
           
 
 
@@ -181,6 +178,10 @@ const Swiper = () => {
                         <div className="dz-content">
                       
                           <div className="left-content">
+                          <div className={`swipe-indicator ${showSwipeIndicator ? 'show' : ''}`}>
+      <IoIosArrowBack className="swipe-icon" />Swipe to navigate<IoIosArrowForward className="swipe-icon" /> 
+    </div>
+          
                           <span class="badge badge-primary mb-2">{e["category_name"]}</span>
                             <h4 className="title"></h4>
                             
