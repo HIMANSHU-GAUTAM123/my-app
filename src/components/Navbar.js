@@ -9,7 +9,7 @@ const Navbar = () => {
 				<div className="header-content">
 					<div className="left-content header-logo logo-lg">
 						<a href="#">
-							<img src='https://nineletters.s3.ap-south-1.amazonaws.com/assets/images/logo.jpg' alt="9letters logo"/>
+							<img src='https://nineletters.s3.ap-south-1.amazonaws.com/assets/images/logo.png' alt="9letters logo"/>
 						</a>
 					</div>
 					<div className="mid-content">

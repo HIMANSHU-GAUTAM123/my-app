@@ -171,7 +171,7 @@ const TagPost = () => {
 
 
       									
-      									<div className="dzSwipe_card" onClick={()=> handleImageClick(e["id"],e["badge_name"],e["url_title"])}>
+      									<div className="dzSwipe_card" >
                         <div className="dz-media">
                         <img src={e["image_url"]} alt=""  />
                         </div>
@@ -180,7 +180,7 @@ const TagPost = () => {
                           <div className={`swipe-indicator ${showSwipeIndicator ? 'show' : ''}`}>
       <IoIosArrowBack className="swipe-icon" />Swipe to navigate<IoIosArrowForward className="swipe-icon" /> 
     </div>
-                          <span class="badge badge-primary mb-2">{e["category_name"]}</span>
+                          <span class="badge badge-primary mb-2" onClick={()=> handleImageClick(e["id"],e["badge_name"],e["url_title"])}>View details</span>
                             <h4 className="title"></h4>
                             
                             
