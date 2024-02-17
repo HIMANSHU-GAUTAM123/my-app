@@ -96,7 +96,7 @@ const AuthorPost = () => {
       const showPreviousImage = () => {
         if (currentIndex > 0) {
           setCurrentIndex(currentIndex - 1);
-          console.log("hi")
+          
         }
         else if(currentIndex==0){
            if(call>0){
@@ -110,10 +110,10 @@ const AuthorPost = () => {
       const showNextImage = () => {
         if (currentIndex < imageCount-1) {
           setCurrentIndex(currentIndex + 1);
-          console.log("bye")
+          
         }
         else if(currentIndex===imageCount-1){
-          console.log("fucj")
+         
           setCurrentIndex(0);
           setPost(null);
           setcall(call+1);
@@ -126,10 +126,11 @@ const AuthorPost = () => {
         onSwipedLeft: showNextImage,
         onSwipedRight: showPreviousImage,
         trackMouse: true,
-        preventDefaultTouchmoveEvent: true
+        preventDefaultTouchmoveEvent: false
         
         
       });
+ 
 
   
   return !post?(<Loader/>): (
@@ -170,11 +171,11 @@ const AuthorPost = () => {
 
 
       {/* <!-- Page Content Start --> */}
-    <div  className="page-content space-top p-b65" {...handlers} >
+    <div  className="page-content space-top p-b65"  {...handlers}>
       
       <div className="container fixed-full-area" >
         
-        <div className="dzSwipe_card-cont dz-gallery-slider">
+        <div className="dzSwipe_card-cont dz-gallery-slider"  >
        
         
 
@@ -188,7 +189,7 @@ const AuthorPost = () => {
 												e["image_url"] && index===currentIndex &&
 
 
-      									<div className="dzSwipe_card" onClick={()=> handleImageClick(e["id"],e["author_name"],e["url_title"])}>
+      									<div className="dzSwipe_card" >
                           
                         <div className="dz-media">
                         <img src={e["image_url"]} alt=""  />
@@ -199,7 +200,7 @@ const AuthorPost = () => {
                           <div className={`swipe-indicator ${showSwipeIndicator ? 'show' : ''}`}>
              <IoIosArrowBack className="swipe-icon" />Swipe to navigate<IoIosArrowForward className="swipe-icon" /> 
            </div>
-                          <span class="badge badge-primary mb-2">{e["category_name"]}</span>
+                          <span class="badge badge-primary mb-2" onClick={()=> handleImageClick(e["id"],e["author_name"],e["url_title"])}>View details</span>
                             <h4 className="title"></h4>
                             
                             
