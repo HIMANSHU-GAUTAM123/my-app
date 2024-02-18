@@ -152,7 +152,7 @@ const AuthorPost = () => {
      
 			<div className="container">
 				<div className="header-content">
-					<div className="left-content"onClick={() => navigate(-1)}>
+					<div className="left-content"onClick={() => navigate(`${process.env.PUBLIC_URL}/quotes-collection`)}>
 						<div >
 							<i className="icon feather icon-arrow-left"></i>
               </div>
