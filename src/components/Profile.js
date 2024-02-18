@@ -341,8 +341,13 @@ const Profile = () => {
 									<div className="detail-bottom-area">
 										<div className="about">
 											<h6 className="title">{e.title}</h6>
-											<p className="para-text">By {e.author_name}</p>					
+											<p className="para-text">- {e.author_name}</p>					
 										</div>
+										{(!!e.description && e.description!='')?
+										<div className="about">
+											<h6 className="title">Explanation</h6>
+											<p className="para-text">{e.description}</p>					
+										</div>:''}
 										{(!!e.about_author && e.about_author!='')?
 										<div className="about">
 											<h6 className="title">About Author</h6>
