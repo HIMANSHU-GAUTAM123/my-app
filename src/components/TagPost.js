@@ -167,11 +167,11 @@ const TagPost = () => {
 						return(
 									Object.values(item).map((e,index)=>{
 									return(
-												e["image_url"] && index===currentIndex &&
+												e["image_url"] && 
 
 
       									
-      									<div className="dzSwipe_card" >
+      								<div className={`dzSwipe_card ${index===currentIndex?'fade-in':'fade-out'}`} >
                         <div className="dz-media">
                         <img src={e["image_url"]} alt=""  />
                         </div>
