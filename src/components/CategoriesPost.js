@@ -91,6 +91,7 @@ const Swiper = () => {
   };
 
   const showNextImage = () => {
+    setShowSwipeIndicator(false);
     if (currentIndex < imageCount - 1) {
       setCurrentIndex(currentIndex + 1);
       console.log("bye")

@@ -34,6 +34,7 @@ const AuthorPost = () => {
 
   window.addEventListener('touchstart', handleSwipe);
   
+  
     
   useEffect(() => {
       const fetchData = async () => {
@@ -94,6 +95,7 @@ const AuthorPost = () => {
       };
 
       const showPreviousImage = () => {
+        
         if (currentIndex > 0) {
           setCurrentIndex(currentIndex - 1);
           
@@ -108,6 +110,7 @@ const AuthorPost = () => {
       };
     
       const showNextImage = () => {
+        setShowSwipeIndicator(false);
         if (currentIndex < imageCount-1) {
           setCurrentIndex(currentIndex + 1);
           

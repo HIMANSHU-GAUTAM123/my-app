@@ -93,6 +93,7 @@ const TagPost = () => {
       };
     
       const showNextImage = () => {
+        setShowSwipeIndicator(false);
         if (currentIndex < imageCount-1) {
           setCurrentIndex(currentIndex + 1);
           
