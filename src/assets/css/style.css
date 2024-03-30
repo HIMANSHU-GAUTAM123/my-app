@@ -758,7 +758,10 @@ progress {
 
 @media (min-width: 1200px) {
   .container, .container-sm, .container-md, .container-lg, .container-xl {
-    max-width: 1024px; } }
+    max-width: 60vw;
+    
+  
+  } }
 
 :root {
   --bs-breakpoint-xs: 0;
@@ -9553,14 +9556,32 @@ a {
   color: #071c35 !important; }
 
 .container {
-  max-width: 440px;
-  margin-left: auto;
-  margin-right: auto;
-  padding-left: 15px;
-  padding-right: 15px;
-  box-sizing: border-box;
-  padding-top: 15px;
-  padding-bottom: 15px; }
+  
+ max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    box-sizing: border-box;
+    padding-top: 15px;
+    padding-bottom: 15px; }
+    .container {
+  
+      max-width: 600px;
+      
+         margin-left: auto;
+         margin-right: auto;
+         padding-left: 15px;
+         padding-right: 15px;
+         box-sizing: border-box;
+         padding-top: 15px;
+         padding-bottom: 15px; }
+
+         @media (min-width: 992px) {
+          .container {
+            max-width: 60vw;
+             
+          } }
 
 b,
 strong,
@@ -14622,7 +14643,7 @@ button {
       background-color: rgba(255, 255, 255, 0.2);
       padding: 4px 10px; }
   .dz-media-card.style-2 .dz-media {
-    height: auto; /* calc(100vh - 350px); */
+    height: 60vh; /* calc(100vh - 350px); */
     border-radius: var(--border-radius); }
     .dz-media-card.style-2 .dz-media img {
       height: 100%;
@@ -18631,6 +18652,12 @@ svg.radial-progress {
     width: 100%;
     height: auto; /*100%; */
     transform-origin: 50% 100%; }
+    @media (min-width: 992px) {
+      .dzSwipe_card {
+        height:70vh ; } }
+    
+    
+   
     .dzSwipe_card.reset {
       transition: transform 0.3s;
       transform: translateX(0) !important; }
