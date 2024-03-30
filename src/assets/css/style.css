@@ -14647,7 +14647,7 @@ button {
     border-radius: var(--border-radius); }
     .dz-media-card.style-2 .dz-media img {
       height: 100%;
-      object-fit: cover; }
+      object-fit: contain; }
     .dz-media-card.style-2 .dz-media::after {
       content: "";
       position: absolute;
@@ -18758,7 +18758,7 @@ svg.radial-progress {
     .dz-gallery-slider .dz-media img {
       height: 100%;
       width: 100%;
-      object-fit: cover;
+      object-fit: contain;
       border-radius: var(--border-radius-md); }
   .dz-gallery-slider .dz-content {
     position: absolute;
